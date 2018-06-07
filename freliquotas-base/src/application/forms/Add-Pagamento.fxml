@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="650.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.forms.AddPagamentoController">
+   <children>
+      <Label alignment="CENTER" layoutX="33.0" layoutY="14.0" prefHeight="80.0" prefWidth="600.0" style="-fx-background-color: #ff0000;" text="Registar pagamento" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <VBox alignment="CENTER" layoutX="95.0" layoutY="131.0" prefHeight="389.0" prefWidth="413.0" spacing="75.0">
+         <children>
+            <HBox spacing="20.0">
+               <children>
+                  <Label text="Nome :" />
+                  <TextField fx:id="nomeMembroTf" prefHeight="25.0" prefWidth="293.0" promptText="Insira o nome do membro" />
+               </children>
+            </HBox>
+            <JFXComboBox fx:id="comboTipoPagamento" layoutX="68.0" layoutY="232.0" prefHeight="45.0" prefWidth="280.0" promptText="Tipo de pagamento" />
+            <JFXTextField fx:id="valorTf" focusColor="RED" layoutX="80.0" layoutY="325.0" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="173.0" prefHeight="45.0" prefWidth="280.0" promptText="Valor" unFocusColor="RED" />
+            <JFXComboBox fx:id="comboMes" layoutX="80.0" layoutY="425.0" prefHeight="45.0" prefWidth="280.0" promptText="Mês" />
+         </children>
+      </VBox>
+      <JFXButton fx:id="registerBtn" layoutX="249.0" layoutY="585.0" onAction="#registar" prefHeight="25.0" prefWidth="106.0" style="-fx-background-color: #ff0000;" text="Registar" textFill="WHITE" />
+   </children>
+</AnchorPane>

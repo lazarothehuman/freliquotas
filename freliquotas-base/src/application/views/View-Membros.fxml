@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#enterKeyPressed" prefHeight="600.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.views.ViewMembroController">
+   <children>
+      <SplitPane dividerPositions="0.14046822742474915" layoutX="169.0" layoutY="28.0" orientation="VERTICAL" prefHeight="600.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <items>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="27.0" prefWidth="1129.0" style="-fx-background-color: #000000;">
+               <children>
+                  <Pane id="headerPane" fx:id="mainTab" layoutY="-2.0" prefHeight="89.0" prefWidth="144.0" style="-fx-background-color: #ff0000;">
+                     <children>
+                        <VBox alignment="CENTER" layoutX="1.0" layoutY="3.0" prefHeight="81.0" prefWidth="144.0">
+                           <children>
+                              <Label fx:id="lblUser" alignment="CENTER" layoutX="9.0" layoutY="14.0" prefHeight="25.0" prefWidth="115.0" text="Candinha" textFill="WHITE">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lblProfile" alignment="CENTER" layoutX="9.0" layoutY="36.0" prefHeight="34.0" prefWidth="140.0" text="Directora" textFill="WHITE" wrapText="true" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </Pane>
+                  <Label alignment="TOP_CENTER" layoutX="146.0" layoutY="6.0" prefHeight="81.0" prefWidth="1132.0" style="-fx-background-color: #ff0000;" text=" Visualizar Membros" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="146.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
+                  <HBox alignment="CENTER" layoutX="597.0" layoutY="41.0" prefHeight="36.0" prefWidth="150.0" AnchorPane.leftAnchor="597.0" AnchorPane.rightAnchor="451.0">
+                     <children>
+                        <Hyperlink layoutX="604.0" layoutY="43.0" onAction="#goHome" text="Home" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Hyperlink>
+                        <Hyperlink layoutX="725.0" layoutY="43.0" onAction="#about" text="Sobre" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Hyperlink>
+                     </children>
+                  </HBox>
+                  <ImageView fitHeight="70.0" fitWidth="83.0" layoutX="1328.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="frelimo.jpg" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="511.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;">
+               <children>
+                  <TableView fx:id="tableMembro" layoutX="113.0" layoutY="95.0" prefHeight="465.0" prefWidth="1058.0" style="-fx-border-width: 2; -fx-border-color: #000000;" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="230.0" AnchorPane.topAnchor="0.0">
+                     <columns>
+                        <TableColumn fx:id="columnNome" prefWidth="220.0" text="Nome" />
+                        <TableColumn fx:id="columnDistrito" prefWidth="157.0" text="Orgão" />
+                        <TableColumn fx:id="columnBi" minWidth="0.0" prefWidth="156.0" text="BI" />
+                        <TableColumn fx:id="columnCartao" prefWidth="237.0" text="Número de cartão" />
+                        <TableColumn fx:id="columnTelefone" prefWidth="201.0" text="Telefone" />
+                        <TableColumn fx:id="columnEmail" prefWidth="206.0" text="E-mail" />
+                     </columns>
+                  </TableView>
+                  <Label alignment="CENTER" layoutX="996.0" layoutY="14.0" prefHeight="36.0" prefWidth="173.0" style="-fx-border-color: #ffffff; -fx-background-color: #ff0000;" text="Pesquisa avançada" textFill="WHITE">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <VBox alignment="CENTER" layoutX="977.0" layoutY="56.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="211.0" spacing="25.0" AnchorPane.bottomAnchor="55.0" AnchorPane.topAnchor="56.0">
+                     <children>
+                        <HBox alignment="CENTER" layoutX="1082.0" layoutY="46.0" maxHeight="-Infinity" maxWidth="-Infinity" spacing="5.0" VBox.vgrow="NEVER">
+                           <children>
+                              <Label layoutX="1082.0" layoutY="50.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="17.0" prefWidth="44.0" text="Nome:" wrapText="true" />
+                              <TextField fx:id="nomeTf" layoutX="1145.0" layoutY="46.0" maxHeight="-Infinity" maxWidth="-Infinity" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="1082.0" layoutY="88.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="193.0" spacing="5.0" VBox.vgrow="NEVER">
+                           <children>
+                              <Label layoutX="1082.0" layoutY="50.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="17.0" prefWidth="37.0" text="B.I.:" />
+                              <TextField fx:id="biTf" layoutX="1145.0" layoutY="46.0" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" layoutX="1083.0" layoutY="132.0" VBox.vgrow="NEVER">
+                           <children>
+                              <Label layoutX="1082.0" layoutY="50.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="17.0" prefWidth="54.0" text="Telefone:" />
+                              <TextField fx:id="telefoneTf" layoutX="1145.0" layoutY="46.0" prefHeight="25.0" prefWidth="132.0" />
+                           </children>
+                        </HBox>
+                        <ComboBox fx:id="comboDistrito" layoutX="1083.0" layoutY="208.0" prefWidth="150.0" promptText="Escolha o orgão" />
+                        <CheckBox fx:id="inactives" layoutX="1083.0" layoutY="256.0" mnemonicParsing="false" text="Mostrar inactivos" />
+                        <JFXButton fx:id="pesquisar" layoutX="1108.0" layoutY="299.0" onAction="#pesquisar" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: #ff0000;" text="Pesquisar" textFill="WHITE" />
+                     </children>
+                  </VBox>
+                  <HBox layoutX="33.0" layoutY="471.0" spacing="7.0" style="-fx-padding: 5; -fx-background-insets: 5; -fx-border-insets: 5;">
+                     <children>
+                        <JFXButton layoutX="34.0" layoutY="472.0" onAction="#addMembro" style="-fx-background-color: #ff0000;" text="Adicionar novo membro" textFill="WHITE" />
+                        <JFXButton layoutX="184.0" layoutY="472.0" onAction="#modifyMembro" style="-fx-background-color: #ff0000;" text="Modificar membro" textFill="WHITE" />
+                        <JFXButton layoutX="306.0" layoutY="472.0" onAction="#removeMembro" style="-fx-background-color: #ff0000;" text="Remover membro" textFill="WHITE" />
+                     </children>
+                  </HBox>
+                  <Label layoutX="734.0" layoutY="473.0" text="Total de itens na procura:">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblTotal" layoutX="885.0" layoutY="473.0" text="0" />
+               </children>
+            </AnchorPane>
+         </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

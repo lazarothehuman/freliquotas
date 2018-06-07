@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="500.0" prefWidth="500.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mz.humansolutions.controllers.forms.ModifyDistritoController">
+   <children>
+      <Label alignment="CENTER" prefHeight="100.0" prefWidth="600.0" style="-fx-background-color: #FF0000;" text="MODIFICAR DISTRITO" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <VBox alignment="CENTER" layoutX="88.0" layoutY="157.0" prefHeight="187.0" prefWidth="325.0" spacing="25.0">
+         <children>
+            <HBox alignment="CENTER" layoutX="102.0" layoutY="174.0" prefHeight="49.0" prefWidth="296.0" spacing="20.0">
+               <children>
+                  <Label layoutX="128.0" layoutY="215.0" text="Nome:">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <JFXTextField fx:id="nomeTf" focusColor="RED" layoutX="225.0" layoutY="215.0" maxWidth="234.0" minWidth="209.0" prefHeight="34.0" prefWidth="209.0" promptText="Insira o nome do distrito" unFocusColor="RED" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <JFXButton fx:id="modifyBtn" layoutX="202.0" layoutY="412.0" onAction="#modify" prefHeight="34.0" prefWidth="96.0" style="-fx-border-color: #ff0000;" text="Modificar" textFill="RED" />
+      <JFXButton fx:id="clearBtn" layoutX="345.0" layoutY="421.0" onAction="#clear" style="-fx-background-color: #ff0000;" text="Limpar" textFill="WHITE" />
+   </children>
+</AnchorPane>

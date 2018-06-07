@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane onKeyPressed="#enterKeyPressed" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.views.ViewDistritosController">
+   <children>
+      <SplitPane dividerPositions="0.14046822742474915" layoutX="169.0" layoutY="28.0" orientation="VERTICAL" prefHeight="600.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <items>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="27.0" prefWidth="1129.0" style="-fx-background-color: #000000;">
+               <children>
+                  <Pane id="headerPane" fx:id="mainTab" layoutY="-2.0" prefHeight="89.0" prefWidth="144.0" style="-fx-background-color: #ff0000;">
+                     <children>
+                        <VBox alignment="CENTER" layoutX="1.0" layoutY="3.0" prefHeight="81.0" prefWidth="144.0">
+                           <children>
+                              <Label fx:id="lblUser" alignment="CENTER" layoutX="9.0" layoutY="14.0" prefHeight="25.0" prefWidth="115.0" text="Candinha" textFill="WHITE">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lblProfile" alignment="CENTER" layoutX="9.0" layoutY="36.0" prefHeight="34.0" prefWidth="140.0" text="Directora" textFill="WHITE" wrapText="true" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </Pane>
+                  <Label alignment="TOP_CENTER" layoutX="146.0" layoutY="6.0" prefHeight="81.0" prefWidth="1132.0" style="-fx-background-color: #ff0000;" text=" Visualizar Orgãos" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="146.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
+                  <HBox alignment="CENTER" layoutX="435.0" layoutY="43.0" prefHeight="25.0" prefWidth="274.0">
+                     <children>
+                        <Hyperlink fx:id="home" layoutX="604.0" layoutY="43.0" onAction="#goHome" onMouseClicked="#goHome" text="Voltar" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Hyperlink>
+                        <Hyperlink fx:id="about" layoutX="725.0" layoutY="43.0" onAction="#about" onMouseClicked="#about" text="Sobre" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Hyperlink>
+                     </children>
+                  </HBox>
+                  <ImageView fitHeight="70.0" fitWidth="83.0" layoutX="893.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="frelimo.jpg" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="511.0" prefWidth="984.0" style="-fx-background-color: #ffffff;">
+               <children>
+                  <TableView fx:id="tableDistrito" layoutX="18.0" onMouseClicked="#doubleClickOnMedico" prefHeight="465.0" prefWidth="704.0" style="-fx-border-width: 2; -fx-border-color: #ff0000;">
+                     <columns>
+                        <TableColumn fx:id="nomeColumn" prefWidth="699.0" text="Nome" />
+                     </columns>
+                  </TableView>
+                  <Label alignment="CENTER" layoutX="747.0" layoutY="14.0" prefHeight="36.0" prefWidth="218.0" style="-fx-border-color: #ffffff; -fx-background-color: #ff0000;" text="Pesquisa avançada" textFill="WHITE">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <VBox alignment="CENTER" layoutX="747.0" layoutY="61.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="389.0" prefWidth="218.0" spacing="25.0">
+                     <children>
+                        <HBox alignment="CENTER" layoutX="1082.0" layoutY="46.0" spacing="5.0" style="-fx-padding: 3;">
+                           <children>
+                              <Label layoutX="1082.0" layoutY="50.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="17.0" prefWidth="45.0" text="Nome:" />
+                              <TextField fx:id="nomeTf" layoutX="1145.0" layoutY="46.0" />
+                           </children>
+                        </HBox>
+                        <CheckBox fx:id="activeCb" layoutX="1083.0" layoutY="256.0" mnemonicParsing="false" text="Mostrar inactivos" />
+                        <JFXButton fx:id="pesquisar" layoutX="1108.0" layoutY="299.0" onAction="#pesquisar" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: #ff0000;" text="Pesquisar" textFill="WHITE" />
+                     </children>
+                  </VBox>
+                  <HBox layoutX="18.0" layoutY="471.0" spacing="15.0">
+                     <children>
+                        <JFXButton fx:id="addDistrito" layoutX="34.0" layoutY="472.0" onAction="#addDistrito" style="-fx-background-color: #ffffff; -fx-padding: 5; -fx-border-insets: 5; -fx-background-insets: 5; -fx-border-color: #ff0000;" text="Adicionar novo orgão" textFill="RED" />
+                        <JFXButton fx:id="modifyDistrito" layoutX="184.0" layoutY="472.0" onAction="#modifyDistrito" style="-fx-background-color: #ffffff; -fx-background-insets: 5; -fx-border-insets: 5; -fx-padding: 5; -fx-border-color: #ff0000;" text="Modificar orgão" textFill="RED" />
+                        <JFXButton fx:id="removeDistrito" layoutX="306.0" layoutY="472.0" onAction="#removerDistrito" style="-fx-background-color: #ffffff; -fx-padding: 5; -fx-border-insets: 5; -fx-background-insets: 5; -fx-border-color: #ff0000;" text="Remover orgão" textFill="RED" />
+                     </children>
+                  </HBox>
+                  <Label layoutX="437.0" layoutY="482.0" text="Total de orgãos na procura:">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblTotal" layoutX="601.0" layoutY="482.0" text="0" />
+               </children>
+            </AnchorPane>
+         </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

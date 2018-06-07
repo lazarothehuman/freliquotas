@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#enterKeyPressed" prefHeight="600.0" prefWidth="1100.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.views.ViewMembroMapsController">
+   <children>
+      <SplitPane dividerPositions="0.14046822742474915" layoutX="169.0" layoutY="28.0" orientation="VERTICAL" prefHeight="600.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <items>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="27.0" prefWidth="1129.0" style="-fx-background-color: #000000;">
+               <children>
+                  <Pane id="headerPane" fx:id="mainTab" layoutY="-2.0" prefHeight="89.0" prefWidth="144.0" style="-fx-background-color: #ff0000;">
+                     <children>
+                        <VBox alignment="CENTER" layoutX="1.0" layoutY="3.0" prefHeight="81.0" prefWidth="144.0">
+                           <children>
+                              <Label fx:id="lblUser" alignment="CENTER" layoutX="9.0" layoutY="14.0" prefHeight="25.0" prefWidth="115.0" text="Candinha" textFill="WHITE">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lblProfile" alignment="CENTER" layoutX="9.0" layoutY="36.0" prefHeight="34.0" prefWidth="140.0" text="Directora" textFill="WHITE" wrapText="true" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </Pane>
+                  <Label alignment="TOP_CENTER" layoutX="146.0" layoutY="6.0" prefHeight="81.0" prefWidth="1132.0" style="-fx-background-color: #ff0000;" text=" Visualizar Mapa de membros" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="146.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
+                  <HBox alignment="CENTER" layoutX="543.0" layoutY="41.0" prefHeight="36.0" prefWidth="159.0" AnchorPane.leftAnchor="543.0" AnchorPane.rightAnchor="396.0">
+                     <children>
+                        <Hyperlink layoutX="604.0" layoutY="43.0" onAction="#goHome" text="Home" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Hyperlink>
+                        <Hyperlink layoutX="725.0" layoutY="43.0" onAction="#about" text="Sobre" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Hyperlink>
+                     </children>
+                  </HBox>
+                  <ImageView fitHeight="70.0" fitWidth="83.0" layoutX="1328.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="frelimo.jpg" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="488.0" prefWidth="1100.0" style="-fx-background-color: #ffffff;">
+               <children>
+                  <TableView fx:id="tableMembros" layoutX="113.0" layoutY="115.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="388.0" prefWidth="1400.0" style="-fx-border-width: 2; -fx-border-color: #000000;" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                     <columns>
+                        <TableColumn fx:id="nomeColumn" prefWidth="184.0" text="Nome" />
+                        <TableColumn editable="false" prefWidth="84.0" sortable="false" text="Janeiro">
+                           <columns>
+                              <TableColumn fx:id="quotaJanColumn" prefWidth="75.0" text="Quota" />
+                              <TableColumn fx:id="fcJanColumn" minWidth="0.0" prefWidth="103.0" text="Fundo comite" />
+                           </columns></TableColumn>
+                        <TableColumn prefWidth="83.0" text="Fevereiro">
+                           <columns>
+                              <TableColumn fx:id="quotaFevColumn" prefWidth="75.0" text="Quota" />
+                              <TableColumn fx:id="fcFevColumn" minWidth="0.0" prefWidth="96.0" text="Fundo comite" />
+                           </columns></TableColumn>
+                        <TableColumn prefWidth="77.0" text="Março">
+                           <columns>
+                              <TableColumn fx:id="quotaMarchColumn" prefWidth="75.0" text="Quota" />
+                              <TableColumn fx:id="fcMarchColumn" minWidth="0.0" prefWidth="100.0" text="Fundo comite" />
+                           </columns></TableColumn>
+                        <TableColumn prefWidth="62.0" text="Abril">
+                           <columns>
+                              <TableColumn fx:id="quotaAprColumn" prefWidth="75.0" text="Quota" />
+                              <TableColumn fx:id="fcAprColumn" minWidth="0.0" prefWidth="114.0" text="Fundo comite" />
+                           </columns></TableColumn>
+                        <TableColumn minWidth="0.0" prefWidth="73.0" text="Maio">
+                           <columns>
+                              <TableColumn fx:id="quotaMayColumn" prefWidth="75.0" text="Quota" />
+                              <TableColumn fx:id="fcMayColumn" minWidth="0.0" prefWidth="93.0" text="Fundo comite" />
+                           </columns></TableColumn>
+                        <TableColumn minWidth="0.0" prefWidth="74.0" text="Junho">
+                           <columns>
+                              <TableColumn fx:id="quotaJunColumn" prefWidth="75.0" text="Quota" />
+                              <TableColumn fx:id="fcJunColumn" minWidth="0.0" prefWidth="93.0" text="Fundo comite" />
+                           </columns></TableColumn>
+                        <TableColumn minWidth="0.0" prefWidth="75.0" text="Julho">
+                           <columns>
+                              <TableColumn fx:id="quotaJulColumn" prefWidth="75.0" text="Column X" />
+                              <TableColumn fx:id="fcJulColumn" minWidth="0.0" prefWidth="86.0" text="Fundo comite" />
+                           </columns></TableColumn>
+                        <TableColumn minWidth="0.0" prefWidth="98.0" text="Agosto">
+                           <columns>
+                              <TableColumn fx:id="quotaAugColumn" prefWidth="75.0" text="Quota" />
+                              <TableColumn fx:id="fcAugColumn" minWidth="0.0" prefWidth="109.0" text="Fundo comite" />
+                           </columns></TableColumn>
+                        <TableColumn minWidth="0.0" prefWidth="109.0" text="Setembro">
+                           <columns>
+                              <TableColumn fx:id="quotaSepColumn" prefWidth="75.0" text="Quota" />
+                              <TableColumn fx:id="fcSepColumn" minWidth="0.0" prefWidth="109.0" text="Fundo comite" />
+                           </columns></TableColumn>
+                        <TableColumn minWidth="0.0" prefWidth="109.0" text="Outubro">
+                           <columns>
+                              <TableColumn fx:id="quotaOctColumn" prefWidth="75.0" text="Quota" />
+                              <TableColumn fx:id="fcOctColumn" minWidth="0.0" prefWidth="109.0" text="Fundo comite" />
+                           </columns></TableColumn>
+                        <TableColumn minWidth="0.0" prefWidth="109.0" text="Novembro">
+                           <columns>
+                              <TableColumn fx:id="quotaNovColumn" prefWidth="75.0" text="Quota" />
+                              <TableColumn fx:id="fcNovColumn" minWidth="0.0" prefWidth="109.0" text="Fundo comite" />
+                           </columns></TableColumn>
+                        <TableColumn minWidth="0.0" prefWidth="109.0" text="Dezembro">
+                           <columns>
+                              <TableColumn fx:id="quotaDecColumn" prefWidth="75.0" text="Quota" />
+                              <TableColumn fx:id="fcDezColumn" minWidth="0.0" prefWidth="109.0" text="Fundo comite" />
+                           </columns></TableColumn>
+                     </columns>
+                  </TableView>
+                  <HBox layoutX="33.0" layoutY="471.0" spacing="7.0" style="-fx-padding: 5; -fx-background-insets: 5; -fx-border-insets: 5;">
+                     <children>
+                        <JFXButton layoutX="34.0" layoutY="472.0" onAction="#inform" style="-fx-background-color: #ff0000;" text="Informar sobre pagamento" textFill="WHITE" />
+                        <JFXButton layoutX="184.0" layoutY="472.0" onAction="#addPayment" style="-fx-background-color: #ff0000;" text="Adicionar pagamento" textFill="WHITE" />
+                        <JFXButton onAction="#visualizarTotais" style="-fx-background-color: #ff0000;" text="Visualizar totais" textFill="WHITE" />
+                     </children>
+                  </HBox>
+                  <Label layoutX="877.0" layoutY="473.0" text="Total de itens na procura:">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblTotal" layoutX="1029.0" layoutY="473.0" text="0" />
+                  <HBox layoutX="14.0" layoutY="27.0" prefHeight="34.0" prefWidth="504.0" spacing="15.0">
+                     <children>
+                        <JFXButton layoutX="810.0" layoutY="19.0" onAction="#pesquisar" prefHeight="35.0" prefWidth="146.0" style="-fx-background-color: #ff0000;" text="PESQUISAR" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </JFXButton>
+                        <HBox alignment="CENTER" layoutX="974.0" layoutY="20.0" maxHeight="-Infinity" maxWidth="-Infinity" spacing="5.0">
+                           <children>
+                              <Label layoutX="1082.0" layoutY="50.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="17.0" prefWidth="44.0" text="Nome:" wrapText="true" />
+                              <TextField fx:id="nomeTf" layoutX="1145.0" layoutY="46.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="34.0" prefWidth="147.0" />
+                           </children>
+                        </HBox>
+                        <JFXComboBox fx:id="distrito" editable="true" prefHeight="32.0" prefWidth="137.0" promptText="Distrito" />
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+         </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

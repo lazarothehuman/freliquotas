@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="650.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.forms.ModifyMembroController">
+   <children>
+      <Label alignment="CENTER" prefHeight="90.0" prefWidth="600.0" style="-fx-background-color: #ff0000;" text="Modificar Membro" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="208.0" layoutY="137.0" text="Nome:" textFill="RED" />
+      <JFXTextField fx:id="nomeTf" focusColor="RED" layoutX="257.0" layoutY="130.0" maxWidth="210.0" minWidth="210.0" prefHeight="31.0" prefWidth="210.0" promptText="Insira o nome" unFocusColor="RED" />
+      <JFXComboBox fx:id="distritoCombo" layoutX="260.0" layoutY="354.0" prefHeight="25.0" prefWidth="202.0" promptText="Orgão" />
+      <Label layoutX="154.0" layoutY="283.0" text="Cartão do membro:" />
+      <JFXTextField fx:id="cartaoMembroTf" focusColor="RED" layoutX="263.0" layoutY="276.0" maxWidth="216.0" minWidth="202.0" prefHeight="31.0" prefWidth="216.0" promptText="Insira o numero de cartao do membro" unFocusColor="RED" />
+      <Label layoutX="201.0" layoutY="524.0" text="B.I.:" />
+      <JFXTextField fx:id="biTf" focusColor="RED" layoutX="252.0" layoutY="509.0" maxWidth="210.0" minWidth="149.0" prefHeight="31.0" prefWidth="210.0" promptText="Insira o BI" unFocusColor="RED" />
+      <JFXTextField fx:id="telefoneTf" focusColor="RED" layoutX="257.0" layoutY="200.0" maxWidth="210.0" minWidth="210.0" prefHeight="31.0" prefWidth="210.0" promptText="Insira o número de telefone" unFocusColor="RED" />
+      <Label layoutX="208.0" layoutY="207.0" text="Telefone:" textFill="RED" />
+      <Label layoutX="192.0" layoutY="429.0" text="E-mail:" />
+      <JFXTextField fx:id="emailTf" focusColor="RED" layoutX="257.0" layoutY="422.0" maxWidth="210.0" minWidth="210.0" prefHeight="31.0" prefWidth="210.0" promptText="Insira o email" unFocusColor="RED" />
+      <JFXButton fx:id="modifyBtn" layoutX="253.0" layoutY="595.0" onAction="#modify" prefHeight="31.0" prefWidth="94.0" style="-fx-background-color: #ff0000;" text="Modificar" textFill="WHITE" />
+      <Label layoutX="192.0" layoutY="358.0" text="Orgão:" />
+   </children>
+</AnchorPane>
