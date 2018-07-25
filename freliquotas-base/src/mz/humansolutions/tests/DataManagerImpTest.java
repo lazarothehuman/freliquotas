@@ -2,6 +2,8 @@ package mz.humansolutions.tests;
 
 import java.io.UnsupportedEncodingException;
 import java.security.GeneralSecurityException;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.junit.Assert;
@@ -141,6 +143,28 @@ public class DataManagerImpTest {
 		dataManager.updateMembro(membro);
 		Assert.assertNotNull(membro.getPagamentos().get(0));
 		Assert.assertEquals(1, membro.getPagamentos().size());
+	}
+	
+	@Test
+	public void testCreatePagamentoWithRegistrador() {
+		Membro membro = dataManager.findMembros(Boolean.TRUE).get(0);
+		User user = dataManager.findUser(1l);
+		
+		Pagamento pagamento = new Pagamento();
+		pagamento.setMembro(membro);
+		pagamento.setMes(Mes.Maio);
+		pagamento.setTipoPagamento(TipoPagamento.Quota);
+		pagamento.setValor(2500d);
+		pagamento.setAno(Calendar.getInstance().get(Calendar.YEAR));
+		pagamento.setRegistrador(user);
+		
+		membro.getPagamentos().add(pagamento);
+		dataManager.updateMembro(membro);
+		Assert.assertNotNull(membro.getPagamentos().get(0));
+		//Assert.assertEquals(1, membro.getPagamentos().size());
+		Assert.assertNotNull(pagamento.getRegistrador());
+		
+		
 	}
 	
 	@Test

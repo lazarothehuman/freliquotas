@@ -1,5 +1,6 @@
 package application.views;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Calendar;
 import java.util.List;
@@ -18,6 +19,7 @@ import mz.humansolutions.managers.NotificationManager;
 import mz.humansolutions.managers.NotificationManagerImp;
 import mz.humansolutions.models.Membro;
 import mz.humansolutions.models.User;
+import mz.humansolutions.utils.AlertUtils;
 import mz.humansolutions.utils.FrameManager;
 
 public class MainController implements Initializable {
@@ -27,6 +29,7 @@ public class MainController implements Initializable {
 	 * trocar distrito paa orgao
 	 */
 
+	int DIA_ENVIO_MENSAGEM = 28;
 	@FXML
 	Label usernameLbl = new Label();
 
@@ -145,6 +148,16 @@ public class MainController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		user = dataManager.findCurrentUser();
+		if(DIA_ENVIO_MENSAGEM == Calendar.getInstance().get(Calendar.DATE)) {
+			AlertUtils.alertDataDeEnvioAutomatico(DIA_ENVIO_MENSAGEM);
+			List<Membro> membros = dataManager.findMembros(null, null, null, user.getDistrito(), Boolean.TRUE);
+			try {
+				notifcationManager.sendSms(user.getTelefone(), "Mensagens enviadas com sucesso");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			notifcationManager.sendSmsNotification(membros);
+		}
 		if (user != null) {
 			usernameLbl.setText(user.getName());
 			userProfileLbl.setText(user.getProfile().getProfilename());

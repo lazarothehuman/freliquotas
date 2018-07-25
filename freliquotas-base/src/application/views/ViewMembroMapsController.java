@@ -2,6 +2,7 @@ package application.views;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -39,6 +40,8 @@ import mz.humansolutions.utils.FrameManager;
 public class ViewMembroMapsController implements Initializable {
 
 	// meter colunas para identifcar o mes
+	
+	int ANO= Calendar.getInstance().get(Calendar.YEAR);
 
 	List<Membro> membros;
 
@@ -47,6 +50,9 @@ public class ViewMembroMapsController implements Initializable {
 
 	@FXML
 	TextField nomeTf = new TextField();
+
+	@FXML
+	TextField anoTf = new TextField();
 
 	@FXML
 	Label lblUser = new Label();
@@ -121,13 +127,14 @@ public class ViewMembroMapsController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		user = dataManager.findCurrentUser();
 		Distrito distrito = null;
+		anoTf.setText(Calendar.getInstance().get(Calendar.YEAR)+"");
 		if (user != null) {
 			distrito = user.getDistrito();
 			lblUser.setText("" + user.getName());
 			lblProfile.setText("" + user.getProfile().getProfilename());
 		}
 		List<Distrito> distritos = dataManager.findDistritos(Boolean.TRUE);
-		if(distritos!=null) 
+		if (distritos != null)
 			this.distrito.setItems(FXCollections.observableArrayList(distritos));
 		membros = dataManager.findMembros(null, null, null, distrito, Boolean.TRUE);
 		nomeColumn.setCellValueFactory(new PropertyValueFactory<Membro, String>("nome"));
@@ -175,7 +182,7 @@ public class ViewMembroMapsController implements Initializable {
 				else {
 					for (Pagamento pagamento : pagamentos) {
 						if (pagamento.getTipoPagamento().equals(TipoPagamento.Quota)
-								&& pagamento.getMes().equals(Mes.Janeiro))
+								&& pagamento.getMes().equals(Mes.Janeiro)&& pagamento.getAno()==ANO)
 							setText(pagamento.getValor() + "Mt");
 					}
 				}
@@ -189,7 +196,7 @@ public class ViewMembroMapsController implements Initializable {
 				else {
 					for (Pagamento pagamento : pagamentos) {
 						if (pagamento.getTipoPagamento().equals(TipoPagamento.Fundo_comité)
-								&& pagamento.getMes().equals(Mes.Janeiro))
+								&& pagamento.getMes().equals(Mes.Janeiro)&& pagamento.getAno()==ANO)
 							setText(pagamento.getValor() + "Mt");
 					}
 				}
@@ -203,7 +210,7 @@ public class ViewMembroMapsController implements Initializable {
 				else {
 					for (Pagamento pagamento : pagamentos) {
 						if (pagamento.getTipoPagamento().equals(TipoPagamento.Quota)
-								&& pagamento.getMes().equals(Mes.Fevereiro))
+								&& pagamento.getMes().equals(Mes.Fevereiro)&& pagamento.getAno()==ANO)
 							setText(pagamento.getValor() + "Mt");
 					}
 				}
@@ -217,7 +224,7 @@ public class ViewMembroMapsController implements Initializable {
 				else {
 					for (Pagamento pagamento : pagamentos) {
 						if (pagamento.getTipoPagamento().equals(TipoPagamento.Fundo_comité)
-								&& pagamento.getMes().equals(Mes.Fevereiro))
+								&& pagamento.getMes().equals(Mes.Fevereiro)&& pagamento.getAno()==ANO)
 							setText(pagamento.getValor() + "Mt");
 					}
 				}
@@ -231,7 +238,7 @@ public class ViewMembroMapsController implements Initializable {
 				else {
 					for (Pagamento pagamento : pagamentos) {
 						if (pagamento.getTipoPagamento().equals(TipoPagamento.Quota)
-								&& pagamento.getMes().equals(Mes.Março))
+								&& pagamento.getMes().equals(Mes.Março)&& pagamento.getAno()==ANO)
 							setText(pagamento.getValor() + "Mt");
 					}
 				}
@@ -245,7 +252,7 @@ public class ViewMembroMapsController implements Initializable {
 				else {
 					for (Pagamento pagamento : pagamentos) {
 						if (pagamento.getTipoPagamento().equals(TipoPagamento.Fundo_comité)
-								&& pagamento.getMes().equals(Mes.Março))
+								&& pagamento.getMes().equals(Mes.Março)&& pagamento.getAno()==ANO)
 							setText(pagamento.getValor() + "Mt");
 					}
 				}
@@ -260,7 +267,7 @@ public class ViewMembroMapsController implements Initializable {
 				else {
 					for (Pagamento pagamento : pagamentos) {
 						if (pagamento.getTipoPagamento().equals(TipoPagamento.Quota)
-								&& pagamento.getMes().equals(Mes.Abril))
+								&& pagamento.getMes().equals(Mes.Abril)&& pagamento.getAno()==ANO)
 							setText(pagamento.getValor() + "Mt");
 					}
 				}
@@ -274,7 +281,7 @@ public class ViewMembroMapsController implements Initializable {
 				else {
 					for (Pagamento pagamento : pagamentos) {
 						if (pagamento.getTipoPagamento().equals(TipoPagamento.Fundo_comité)
-								&& pagamento.getMes().equals(Mes.Abril))
+								&& pagamento.getMes().equals(Mes.Abril)&& pagamento.getAno()==ANO)
 							setText(pagamento.getValor() + "Mt");
 					}
 				}
@@ -289,7 +296,7 @@ public class ViewMembroMapsController implements Initializable {
 				else {
 					for (Pagamento pagamento : pagamentos) {
 						if (pagamento.getTipoPagamento().equals(TipoPagamento.Quota)
-								&& pagamento.getMes().equals(Mes.Maio))
+								&& pagamento.getMes().equals(Mes.Maio)&& pagamento.getAno()==ANO)
 							setText(pagamento.getValor() + "Mt");
 					}
 				}
@@ -303,7 +310,7 @@ public class ViewMembroMapsController implements Initializable {
 				else {
 					for (Pagamento pagamento : pagamentos) {
 						if (pagamento.getTipoPagamento().equals(TipoPagamento.Fundo_comité)
-								&& pagamento.getMes().equals(Mes.Maio))
+								&& pagamento.getMes().equals(Mes.Maio)&& pagamento.getAno()==ANO)
 							setText(pagamento.getValor() + "Mt");
 					}
 				}
@@ -317,7 +324,7 @@ public class ViewMembroMapsController implements Initializable {
 				else {
 					for (Pagamento pagamento : pagamentos) {
 						if (pagamento.getTipoPagamento().equals(TipoPagamento.Quota)
-								&& pagamento.getMes().equals(Mes.Julho))
+								&& pagamento.getMes().equals(Mes.Julho)&& pagamento.getAno()==ANO)
 							setText(pagamento.getValor() + "Mt");
 					}
 				}
@@ -331,7 +338,7 @@ public class ViewMembroMapsController implements Initializable {
 				else {
 					for (Pagamento pagamento : pagamentos) {
 						if (pagamento.getTipoPagamento().equals(TipoPagamento.Fundo_comité)
-								&& pagamento.getMes().equals(Mes.Julho))
+								&& pagamento.getMes().equals(Mes.Julho)&& pagamento.getAno()==ANO)
 							setText(pagamento.getValor() + "Mt");
 					}
 				}
@@ -346,7 +353,7 @@ public class ViewMembroMapsController implements Initializable {
 				else {
 					for (Pagamento pagamento : pagamentos) {
 						if (pagamento.getTipoPagamento().equals(TipoPagamento.Fundo_comité)
-								&& pagamento.getMes().equals(Mes.Junho))
+								&& pagamento.getMes().equals(Mes.Junho)&& pagamento.getAno()==ANO)
 							setText(pagamento.getValor() + "Mt");
 					}
 				}
@@ -360,7 +367,7 @@ public class ViewMembroMapsController implements Initializable {
 				else {
 					for (Pagamento pagamento : pagamentos) {
 						if (pagamento.getTipoPagamento().equals(TipoPagamento.Fundo_comité)
-								&& pagamento.getMes().equals(Mes.Junho))
+								&& pagamento.getMes().equals(Mes.Junho) && pagamento.getAno()==ANO)
 							setText(pagamento.getValor() + "Mt");
 					}
 				}
@@ -375,7 +382,7 @@ public class ViewMembroMapsController implements Initializable {
 				else {
 					for (Pagamento pagamento : pagamentos) {
 						if (pagamento.getTipoPagamento().equals(TipoPagamento.Quota)
-								&& pagamento.getMes().equals(Mes.Agosto))
+								&& pagamento.getMes().equals(Mes.Agosto)&& pagamento.getAno()==ANO)
 							setText(pagamento.getValor() + "Mt");
 					}
 				}
@@ -389,7 +396,7 @@ public class ViewMembroMapsController implements Initializable {
 				else {
 					for (Pagamento pagamento : pagamentos) {
 						if (pagamento.getTipoPagamento().equals(TipoPagamento.Fundo_comité)
-								&& pagamento.getMes().equals(Mes.Agosto))
+								&& pagamento.getMes().equals(Mes.Agosto)&& pagamento.getAno()==ANO)
 							setText(pagamento.getValor() + "Mt");
 					}
 				}
@@ -404,7 +411,7 @@ public class ViewMembroMapsController implements Initializable {
 				else {
 					for (Pagamento pagamento : pagamentos) {
 						if (pagamento.getTipoPagamento().equals(TipoPagamento.Quota)
-								&& pagamento.getMes().equals(Mes.Setembro))
+								&& pagamento.getMes().equals(Mes.Setembro)&& pagamento.getAno()==ANO)
 							setText(pagamento.getValor() + "Mt");
 					}
 				}
@@ -418,7 +425,7 @@ public class ViewMembroMapsController implements Initializable {
 				else {
 					for (Pagamento pagamento : pagamentos) {
 						if (pagamento.getTipoPagamento().equals(TipoPagamento.Fundo_comité)
-								&& pagamento.getMes().equals(Mes.Setembro))
+								&& pagamento.getMes().equals(Mes.Setembro)&& pagamento.getAno()==ANO)
 							setText(pagamento.getValor() + "Mt");
 					}
 				}
@@ -432,7 +439,7 @@ public class ViewMembroMapsController implements Initializable {
 				else {
 					for (Pagamento pagamento : pagamentos) {
 						if (pagamento.getTipoPagamento().equals(TipoPagamento.Quota)
-								&& pagamento.getMes().equals(Mes.Outubro))
+								&& pagamento.getMes().equals(Mes.Outubro)&& pagamento.getAno()==ANO)
 							setText(pagamento.getValor() + "Mt");
 					}
 				}
@@ -446,7 +453,7 @@ public class ViewMembroMapsController implements Initializable {
 				else {
 					for (Pagamento pagamento : pagamentos) {
 						if (pagamento.getTipoPagamento().equals(TipoPagamento.Fundo_comité)
-								&& pagamento.getMes().equals(Mes.Outubro))
+								&& pagamento.getMes().equals(Mes.Outubro)&& pagamento.getAno()==ANO)
 							setText(pagamento.getValor() + "Mt");
 					}
 				}
@@ -461,7 +468,7 @@ public class ViewMembroMapsController implements Initializable {
 				else {
 					for (Pagamento pagamento : pagamentos) {
 						if (pagamento.getTipoPagamento().equals(TipoPagamento.Quota)
-								&& pagamento.getMes().equals(Mes.Novembro))
+								&& pagamento.getMes().equals(Mes.Novembro)&& pagamento.getAno()==ANO)
 							setText(pagamento.getValor() + "Mt");
 					}
 				}
@@ -475,7 +482,7 @@ public class ViewMembroMapsController implements Initializable {
 				else {
 					for (Pagamento pagamento : pagamentos) {
 						if (pagamento.getTipoPagamento().equals(TipoPagamento.Fundo_comité)
-								&& pagamento.getMes().equals(Mes.Novembro))
+								&& pagamento.getMes().equals(Mes.Novembro)&& pagamento.getAno()==ANO)
 							setText(pagamento.getValor() + "Mt");
 					}
 				}
@@ -490,7 +497,7 @@ public class ViewMembroMapsController implements Initializable {
 				else {
 					for (Pagamento pagamento : pagamentos) {
 						if (pagamento.getTipoPagamento().equals(TipoPagamento.Quota)
-								&& pagamento.getMes().equals(Mes.Dezembro))
+								&& pagamento.getMes().equals(Mes.Dezembro)&& pagamento.getAno()==ANO)
 							setText(pagamento.getValor() + "Mt");
 					}
 				}
@@ -504,7 +511,7 @@ public class ViewMembroMapsController implements Initializable {
 				else {
 					for (Pagamento pagamento : pagamentos) {
 						if (pagamento.getTipoPagamento().equals(TipoPagamento.Fundo_comité)
-								&& pagamento.getMes().equals(Mes.Dezembro))
+								&& pagamento.getMes().equals(Mes.Dezembro)&& pagamento.getAno()==ANO)
 							setText(pagamento.getValor() + "Mt");
 					}
 				}
@@ -555,9 +562,10 @@ public class ViewMembroMapsController implements Initializable {
 		Distrito distritos = distrito.getValue();
 		membros = dataManager.findMembros(nome, null, null, distritos, Boolean.TRUE);
 		if (membros != null) {
+			
 			tableMembros.setItems(FXCollections.observableArrayList(membros));
 			lblTotal.setText(membros.size() + "");
-		}else {
+		} else {
 			AlertUtils.pesquisaVazia();
 			tableMembros.setItems(null);
 		}
@@ -630,10 +638,11 @@ public class ViewMembroMapsController implements Initializable {
 			}
 		}
 		Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setContentText("Janeiro : " + totalJaneiro + " Mt\nFevereiro : " + totalFevereiro + "Mt\nMarço : " + totalMarco
-				+ "Mt\nAbril : " + totalAbril + " Mt\nMaio:" + totalMaio + " Mt\nJunho: " + totalJunho + " Mt\nJulho : " + totalJulho
-				+ "Mt\nAgosto : " + totalAgosto + " Mt\nSetembro:" + totalSetembro + "Mt\nOutubro : " + totalOutubro
-				+ "Mt\nNovembro : " + totalNovembro + "Mt\nDecembro : " + totalDecembro+" Mt");
+		alert.setContentText("Janeiro : " + totalJaneiro + " Mt\nFevereiro : " + totalFevereiro + "Mt\nMarço : "
+				+ totalMarco + "Mt\nAbril : " + totalAbril + " Mt\nMaio:" + totalMaio + " Mt\nJunho: " + totalJunho
+				+ " Mt\nJulho : " + totalJulho + "Mt\nAgosto : " + totalAgosto + " Mt\nSetembro:" + totalSetembro
+				+ "Mt\nOutubro : " + totalOutubro + "Mt\nNovembro : " + totalNovembro + "Mt\nDecembro : "
+				+ totalDecembro + " Mt");
 		alert.setHeaderText(null);
 		alert.setTitle("Totais mensais");
 		alert.showAndWait();

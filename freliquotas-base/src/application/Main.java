@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 
 
 public class Main extends Application {
@@ -16,6 +17,8 @@ public class Main extends Application {
 			Scene scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
+			primaryStage.setTitle("Freliquotas- Login");
+			primaryStage.getIcons().add(new Image("frelimo.jpg"));
 			primaryStage.show();
 			primaryStage.setResizable(false);
 			primaryStage.setOnCloseRequest(e -> {

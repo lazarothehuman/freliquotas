@@ -46,4 +46,13 @@ public class AlertUtils {
 		
 	}
 
+	public static void alertDataDeEnvioAutomatico(int dIA_ENVIO_MENSAGEM) {
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Envio de mensagens automatico");
+		alert.setContentText("Hoje, dia "+dIA_ENVIO_MENSAGEM+", é o dia de envio de mensagens das quotas. ");
+		alert.setHeaderText(null);
+		alert.showAndWait();
+		
+	}
+
 }

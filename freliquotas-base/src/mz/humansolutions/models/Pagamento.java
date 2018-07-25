@@ -24,6 +24,9 @@ public class Pagamento {
 	@Column(nullable = false)
 	private Mes mes;
 	
+	@Column(nullable=false)
+	private int ano;
+	
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
 	private TipoPagamento tipoPagamento;
@@ -34,6 +37,10 @@ public class Pagamento {
 	
 	@Column(nullable = false, columnDefinition="bit")
 	private Boolean active = true;
+	
+	@ManyToOne
+	@JoinColumn(nullable=false)
+	private User registrador;
 
 	public Long getId() {
 		return id;
@@ -59,6 +66,14 @@ public class Pagamento {
 		this.mes = mes;
 	}
 
+	public int getAno() {
+		return ano;
+	}
+
+	public void setAno(int ano) {
+		this.ano = ano;
+	}
+
 	public TipoPagamento getTipoPagamento() {
 		return tipoPagamento;
 	}
@@ -73,6 +88,14 @@ public class Pagamento {
 
 	public void setMembro(Membro membro) {
 		this.membro = membro;
+	}
+
+	public User getRegistrador() {
+		return registrador;
+	}
+
+	public void setRegistrador(User registrador) {
+		this.registrador = registrador;
 	}
 
 	public Boolean getActive() {

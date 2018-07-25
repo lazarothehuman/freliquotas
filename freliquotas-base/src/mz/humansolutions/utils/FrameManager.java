@@ -7,6 +7,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import mz.humansolutions.managers.DataManager;
 import mz.humansolutions.managers.DataManagerImp;
@@ -30,6 +31,8 @@ public class FrameManager {
 			Scene scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("/application/application.css").toExternalForm());
 			primaryStage.setScene(scene);
+			primaryStage.setTitle("Freliquotas");
+			primaryStage.getIcons().add(new Image("frelimo.jpg"));
 			primaryStage.show();
 			primaryStage.setResizable(false);
 			primaryStage.setOnCloseRequest(e -> {
@@ -52,6 +55,8 @@ public class FrameManager {
 			Scene scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("/application/application.css").toExternalForm());
 			primaryStage.setScene(scene);
+			primaryStage.setTitle("Freliquotas Login");
+			primaryStage.getIcons().add(new Image("frelimo.jpg"));
 			primaryStage.show();
 			primaryStage.setResizable(false);
 			primaryStage.setOnCloseRequest(e -> {
@@ -74,6 +79,8 @@ public class FrameManager {
 			Scene scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("/application/application.css").toExternalForm());
 			primaryStage.setScene(scene);
+			primaryStage.setTitle("Procurar ");
+			primaryStage.getIcons().add(new Image("frelimo.jpg"));
 			primaryStage.show();
 			primaryStage.setResizable(false);
 		} catch (Exception e) {
@@ -136,6 +143,8 @@ public class FrameManager {
 			Scene scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("/application/application.css").toExternalForm());
 			primaryStage.setScene(scene);
+			primaryStage.setTitle("Freliquotas");
+			primaryStage.getIcons().add(new Image("frelimo.jpg"));
 			primaryStage.show();
 			primaryStage.setResizable(false);
 		} catch (Exception e) {

@@ -91,6 +91,7 @@ public class MembroJpaDao implements MembroDao {
 				predicates.add(predicate);
 		}
 
+
 		if (active != null) {
 			Predicate predicate = criteriaBuilder.equal(activePath, active);
 			predicates.add(predicate);

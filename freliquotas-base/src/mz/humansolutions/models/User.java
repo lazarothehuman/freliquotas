@@ -1,5 +1,8 @@
 package mz.humansolutions.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -8,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -45,6 +49,12 @@ public class User {
 	
 	@Column(name="active", nullable=false, columnDefinition="bit")
 	private Boolean active= true;
+	
+	@Column(nullable =false)
+	private String telefone;
+	
+	@OneToMany
+	private List<Pagamento> pagamentosRegistados = new ArrayList<>();
 	
 	public SessionHelper getSessionHelper() {
 		return sessionHelper;
@@ -110,6 +120,22 @@ public class User {
 
 	public void setDistrito(Distrito distrito) {
 		this.distrito = distrito;
+	}
+
+	public List<Pagamento> getPagamentosRegistados() {
+		return pagamentosRegistados;
+	}
+
+	public void setPagamentosRegistados(List<Pagamento> pagamentosRegistados) {
+		this.pagamentosRegistados = pagamentosRegistados;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
 	}
 
 }

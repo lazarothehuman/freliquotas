@@ -2,6 +2,7 @@ package application.forms;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -78,6 +79,8 @@ public class AddPagamentoController implements Initializable {
 			pagamento.setValor(valor);
 			pagamento.setTipoPagamento(tipoPagamento);
 			pagamento.setMes(mes);
+			pagamento.setAno(Calendar.getInstance().get(Calendar.YEAR));
+			pagamento.setRegistrador(dataManager.findCurrentUser());
 			membro.getPagamentos().add(pagamento);
 			dataManager.updateMembro(membro);
 			AlertUtils.alertSucesso("Pagamento registado com sucesso. \nNome: " + membro.getNome() + "\nValor: "
@@ -86,7 +89,6 @@ public class AddPagamentoController implements Initializable {
 			stage.close();
 		} else
 			AlertUtils.alertErroInsercaoDados();
-
 	}
 
 }
