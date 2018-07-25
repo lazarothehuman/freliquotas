@@ -19,6 +19,7 @@ import mz.humansolutions.models.Distrito;
 import mz.humansolutions.models.Profile;
 import mz.humansolutions.models.User;
 import mz.humansolutions.utils.AlertUtils;
+import mz.humansolutions.utils.Validations;
 
 public class AddUserController implements Initializable {
 
@@ -33,6 +34,9 @@ public class AddUserController implements Initializable {
 
 	@FXML
 	TextField usernameTf = new TextField();
+	
+	@FXML
+	TextField telefoneTf = new TextField();
 
 	@FXML
 	TextField passwordTf = new TextField();
@@ -54,6 +58,7 @@ public class AddUserController implements Initializable {
 	}
 
 	public void add() {
+		boolean valid = false;
 		String nome = nomeTf.getText();
 		String username = usernameTf.getText();
 		String password = passwordTf.getText();
@@ -61,9 +66,12 @@ public class AddUserController implements Initializable {
 		Profile profile = comboPerfil.getSelectionModel().getSelectedItem();
 		Distrito distrito = comboDistrito.getSelectionModel().getSelectedItem();
 		boolean isUnique = true;
-
+		String telefone = telefoneTf.getText();
+		if (telefone != null && !telefone.isEmpty()) {
+			valid = Validations.isValidForSMSNotification(telefone);
+		}
 		if (nome != null && !nome.isEmpty() && username != null && !username.isEmpty() && password != null
-				&& !password.isEmpty() && repeat != null && !repeat.isEmpty() && profile != null && distrito != null) {
+				&& !password.isEmpty() && repeat != null && !repeat.isEmpty() && profile != null && distrito != null && valid) {
 			username = username.trim();
 			username = username.toLowerCase();
 			User usuario = dataManager.findUser(username);
@@ -77,6 +85,7 @@ public class AddUserController implements Initializable {
 				user.setUsername(username);
 				user.setPassword(password);
 				user.setDistrito(distrito);
+				user.setTelefone(telefone);
 				try {
 					dataManager.createUser(user);
 				} catch (UnsupportedEncodingException e) {

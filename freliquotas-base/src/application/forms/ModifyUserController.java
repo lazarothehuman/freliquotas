@@ -20,6 +20,7 @@ import mz.humansolutions.models.Distrito;
 import mz.humansolutions.models.Profile;
 import mz.humansolutions.models.User;
 import mz.humansolutions.utils.AlertUtils;
+import mz.humansolutions.utils.Validations;
 
 public class ModifyUserController implements Initializable {
 
@@ -37,6 +38,9 @@ public class ModifyUserController implements Initializable {
 
 	@FXML
 	TextField passwordTf = new TextField();
+	
+	@FXML
+	TextField telefoneTf = new TextField();
 
 	@FXML
 	TextField repeatPasswordTf = new TextField();
@@ -71,27 +75,33 @@ public class ModifyUserController implements Initializable {
 		if (this.user != null) {
 			nomeTf.setText(user.getName());
 			usernameTf.setText(user.getUsername());
+			telefoneTf.setText(user.getTelefone());
 			comboPerfil.setValue(user.getProfile());
 			comboDistrito.setValue(user.getDistrito());
 		}
 	}
 
 	public void modify() {// fazer controle de permissoes
+		boolean valid = false;
 		String nome = nomeTf.getText();
 		String username = usernameTf.getText();
 		String password = passwordTf.getText();
 		String repeat = repeatPasswordTf.getText();
 		Profile profile = comboPerfil.getSelectionModel().getSelectedItem();
 		Distrito distrito = comboDistrito.getSelectionModel().getSelectedItem();
-
-		if (nome != null && !nome.isEmpty() && username != null && !username.isEmpty() && profile != null
-				&& distrito != null) {
+		String telefone = telefoneTf.getText();
+		if (telefone != null && !telefone.isEmpty()) {
+			valid = Validations.isValidForSMSNotification(telefone);
+		}
+		if (nome != null && !nome.isEmpty() && username != null && !username.isEmpty() && password != null
+				&& !password.isEmpty() && repeat != null && !repeat.isEmpty() && profile != null && distrito != null && valid) {
 			if (password.equals(repeat)) {
 				this.user.setActive(true);
 				this.user.setName(nome);
 				this.user.setProfile(profile);
 				this.user.setDistrito(distrito);
 				this.user.setUsername(username);
+				this.user.setTelefone(telefone);
 				if (!password.isEmpty()) {
 					this.user.setPassword(password);
 					}

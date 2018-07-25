@@ -14,9 +14,10 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <VBox alignment="CENTER" layoutX="124.0" layoutY="112.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="577.0" prefWidth="231.0" spacing="60.0">
+      <VBox alignment="CENTER" layoutX="124.0" layoutY="112.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="577.0" prefWidth="231.0" spacing="50.0">
          <children>
             <JFXTextField fx:id="nomeTf" focusColor="RED" layoutX="35.0" layoutY="117.0" maxWidth="231.0" minWidth="180.0" prefHeight="31.0" prefWidth="231.0" promptText="Insira o nome" unFocusColor="RED" />
+            <JFXTextField fx:id="telefoneTf" focusColor="RED" maxWidth="231.0" minWidth="180.0" prefHeight="31.0" prefWidth="231.0" promptText="Insira o telefone" unFocusColor="RED" />
             <JFXComboBox fx:id="comboDistrito" prefHeight="25.0" prefWidth="226.0" promptText="Insira o distrito" />
             <JFXComboBox fx:id="comboPerfil" layoutX="40.0" layoutY="173.0" prefHeight="25.0" prefWidth="228.0" promptText="Insira o perfil" />
             <JFXTextField fx:id="usernameTf" focusColor="RED" layoutX="35.0" layoutY="235.0" maxWidth="231.0" minWidth="180.0" prefHeight="31.0" prefWidth="231.0" promptText="Insira o username" unFocusColor="RED" />
@@ -26,10 +27,11 @@
          </children>
       </VBox>
       <JFXButton fx:id="modify" layoutX="161.0" layoutY="705.0" onAction="#modify" prefHeight="31.0" prefWidth="78.0" style="-fx-background-color: #ff0000;" text="Adicionar" textFill="WHITE" />
-      <Label layoutX="65.0" layoutY="133.0" text="Nome:" />
-      <Label layoutX="62.0" layoutY="220.0" text="Distrito:" />
-      <Label layoutX="71.0" layoutY="310.0" text="Perfil" />
-      <Label layoutX="55.0" layoutY="392.0" text="Username:" />
-      <Label layoutX="57.0" layoutY="483.0" text="Password:" />
+      <Label layoutX="67.0" layoutY="125.0" text="Nome:" />
+      <Label layoutX="62.0" layoutY="283.0" text="Distrito:" />
+      <Label layoutX="70.0" layoutY="358.0" text="Perfil" />
+      <Label layoutX="56.0" layoutY="434.0" text="Username:" />
+      <Label layoutX="59.0" layoutY="514.0" text="Password:" />
+      <Label layoutX="59.0" layoutY="203.0" text="Telefone:" />
    </children>
 </AnchorPane>
