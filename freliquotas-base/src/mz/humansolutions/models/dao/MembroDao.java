@@ -13,7 +13,7 @@ public interface MembroDao {
 
 	List<Membro> find(Boolean active);
 
-	List<Membro> find(String nome, String telefone, String bi, Distrito distrito, Boolean active);
+	List<Membro> find(String nome, String telefone, String bi, Distrito distrito, Boolean active, Boolean paidAllYear);
 
 	Membro find(Long id, String nome);
 

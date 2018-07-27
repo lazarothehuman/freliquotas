@@ -136,7 +136,7 @@ public class ViewMembroMapsController implements Initializable {
 		List<Distrito> distritos = dataManager.findDistritos(Boolean.TRUE);
 		if (distritos != null)
 			this.distrito.setItems(FXCollections.observableArrayList(distritos));
-		membros = dataManager.findMembros(null, null, null, distrito, Boolean.TRUE);
+		membros = dataManager.findMembros(null, null, null, distrito, Boolean.TRUE, null);
 		nomeColumn.setCellValueFactory(new PropertyValueFactory<Membro, String>("nome"));
 		PropertyValueFactory<Membro, List<Pagamento>> janFactory = new PropertyValueFactory<>("pagamentos");
 		PropertyValueFactory<Membro, List<Pagamento>> fevFactory = new PropertyValueFactory<>("pagamentos");
@@ -352,7 +352,7 @@ public class ViewMembroMapsController implements Initializable {
 					setText(null);
 				else {
 					for (Pagamento pagamento : pagamentos) {
-						if (pagamento.getTipoPagamento().equals(TipoPagamento.Fundo_comité)
+						if (pagamento.getTipoPagamento().equals(TipoPagamento.Quota)
 								&& pagamento.getMes().equals(Mes.Junho)&& pagamento.getAno()==ANO)
 							setText(pagamento.getValor() + "Mt");
 					}
@@ -560,7 +560,7 @@ public class ViewMembroMapsController implements Initializable {
 	public void pesquisar() {
 		String nome = nomeTf.getText();
 		Distrito distritos = distrito.getValue();
-		membros = dataManager.findMembros(nome, null, null, distritos, Boolean.TRUE);
+		membros = dataManager.findMembros(nome, null, null, distritos, Boolean.TRUE, null);
 		if (membros != null) {
 			
 			tableMembros.setItems(FXCollections.observableArrayList(membros));

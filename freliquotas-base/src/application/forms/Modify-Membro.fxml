@@ -27,5 +27,6 @@
       <JFXTextField fx:id="emailTf" focusColor="RED" layoutX="257.0" layoutY="422.0" maxWidth="210.0" minWidth="210.0" prefHeight="31.0" prefWidth="210.0" promptText="Insira o email" unFocusColor="RED" />
       <JFXButton fx:id="modifyBtn" layoutX="253.0" layoutY="595.0" onAction="#modify" prefHeight="31.0" prefWidth="94.0" style="-fx-background-color: #ff0000;" text="Modificar" textFill="WHITE" />
       <Label layoutX="192.0" layoutY="358.0" text="Orgão:" />
+      <CheckBox fx:id="paidAllYear" layoutX="247.0" layoutY="557.0" mnemonicParsing="false" text="Pagou todo ano" />
    </children>
 </AnchorPane>

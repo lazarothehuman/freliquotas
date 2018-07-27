@@ -192,8 +192,8 @@ public class DataManagerImp implements DataManager {
 	}
 
 	@Override
-	public List<Membro> findMembros(String nome, String telefone, String bi, Distrito distrito, Boolean active) {
-		return membroDao.find(nome, telefone, bi, distrito, active);
+	public List<Membro> findMembros(String nome, String telefone, String bi, Distrito distrito, Boolean active, Boolean paidAllYear) {
+		return membroDao.find(nome, telefone, bi, distrito, active, paidAllYear);
 	}
 
 	@Override

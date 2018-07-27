@@ -8,6 +8,7 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -44,6 +45,9 @@ public class AddMembroController implements Initializable {
 	
 	@FXML
 	Label validNumberlbl = new Label();
+	
+	@FXML
+	CheckBox paidAllYear = new CheckBox();
 	
 	boolean valid = false;
 
@@ -87,6 +91,7 @@ public class AddMembroController implements Initializable {
 			membro.setNome(nome);
 			membro.setDistrito(distrito);
 			membro.setTelefone(telefone);
+			membro.setPaidAllYear(paidAllYear.isSelected());
 			if (email != null && !email.isEmpty())
 				membro.setEmail(email);
 			if(bi!=null && !bi.isEmpty())

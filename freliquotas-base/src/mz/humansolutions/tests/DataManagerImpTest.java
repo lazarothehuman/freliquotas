@@ -3,7 +3,6 @@ package mz.humansolutions.tests;
 import java.io.UnsupportedEncodingException;
 import java.security.GeneralSecurityException;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import org.junit.Assert;
@@ -177,10 +176,13 @@ public class DataManagerImpTest {
 	
 	@Test
 	public void testFindMembroWithMultipleParameters() {
-		Distrito distrito = dataManager.findDistrito(null, "Secretariado da cidade");
-		List<Membro> membros = dataManager.findMembros(null, null, null, distrito, null);
+		//Distrito distrito = dataManager.findDistrito(null, "Secretariado da cidade");
+		List<Membro> membros = dataManager.findMembros(null, null, null, null, Boolean.TRUE, Boolean.TRUE);
+		for (Membro membro : membros) {
+			System.out.println(membro.getNome());
+		}
 		Assert.assertNotNull(membros);
-		Assert.assertEquals(4, membros.size());
+		Assert.assertEquals(1, membros.size());
 	}
 	
 

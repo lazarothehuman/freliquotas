@@ -93,6 +93,7 @@
                         </HBox>
                         <ComboBox fx:id="comboDistrito" layoutX="1083.0" layoutY="208.0" prefWidth="150.0" promptText="Escolha o orgão" />
                         <CheckBox fx:id="inactives" layoutX="1083.0" layoutY="256.0" mnemonicParsing="false" text="Mostrar inactivos" />
+                        <CheckBox fx:id="paidAllYear" mnemonicParsing="false" text="Mostrar pagou todo ano" />
                         <JFXButton fx:id="pesquisar" layoutX="1108.0" layoutY="299.0" onAction="#pesquisar" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: #ff0000;" text="Pesquisar" textFill="WHITE" />
                      </children>
                   </VBox>

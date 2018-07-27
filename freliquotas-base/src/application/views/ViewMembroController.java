@@ -1,6 +1,7 @@
 package application.views;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -73,10 +74,13 @@ public class ViewMembroController implements Initializable {
 	@FXML
 	ComboBox<Distrito> comboDistrito;
 
-	List<Membro> membroList;
+	List<Membro> membroList = new ArrayList<>();
 
 	@FXML
 	CheckBox inactives;
+	
+	@FXML
+	CheckBox paidAllYear;
 
 	DataManager dataManager = new DataManagerImp();
 
@@ -108,7 +112,10 @@ public class ViewMembroController implements Initializable {
 		String telefone = telefoneTf.getText();
 		String bi = biTf.getText();
 		Distrito distrito = comboDistrito.getSelectionModel().getSelectedItem();
-		membroList = dataManager.findMembros(nome, telefone, bi, distrito, !inactives.isSelected());
+		Boolean paid = paidAllYear.isSelected();
+		if(!paid)
+			paid = false;
+		membroList = dataManager.findMembros(nome, telefone, bi, distrito, !inactives.isSelected(), paid);
 		if (membroList != null) {
 			tableMembro.setItems(FXCollections.observableArrayList(membroList));
 			lblTotal.setText(membroList.size() + "");

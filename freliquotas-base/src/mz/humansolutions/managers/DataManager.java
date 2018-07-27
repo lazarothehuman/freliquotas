@@ -41,7 +41,7 @@ public interface DataManager {
 	public void updateMembro(Membro membro);
 	public List<Membro> findMembros(Boolean true1);
 	public List<Distrito> findDistritos(String nome, Boolean active);
-	public List<Membro> findMembros(String nome, String telefone, String bi, Distrito distrito,Boolean active);
+	public List<Membro> findMembros(String nome, String telefone, String bi, Distrito distrito,Boolean active, Boolean paidAllYear);
 	public List<User> findUsers(String username, String nome, Profile profile, Boolean activee, Distrito distrito);
 	public Membro findMembro(Long id, String nome);
 

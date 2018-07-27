@@ -50,7 +50,7 @@ public class MembroJpaDao implements MembroDao {
 	}
 
 	@Override
-	public List<Membro> find(String nome, String telefone, String bi, Distrito distrito, Boolean active) {
+	public List<Membro> find(String nome, String telefone, String bi, Distrito distrito, Boolean active, Boolean paidAllYear) {
 		entityManager.getTransaction().begin();
 
 		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
@@ -64,6 +64,8 @@ public class MembroJpaDao implements MembroDao {
 		Path<String> biPath = root.<String>get("bi");
 		Path<Distrito> distritoPath = root.<Distrito>get("distrito");
 		Path<Boolean> activePath = root.<Boolean>get("active");
+		Path<Boolean> paidAllYearPath = root.<Boolean>get("paidAllYear");
+
 
 		if (nome != null) {
 			if (!nome.isEmpty()) {
@@ -94,6 +96,11 @@ public class MembroJpaDao implements MembroDao {
 
 		if (active != null) {
 			Predicate predicate = criteriaBuilder.equal(activePath, active);
+			predicates.add(predicate);
+		}
+		
+		if (paidAllYear != null) {
+			Predicate predicate = criteriaBuilder.equal(paidAllYearPath, paidAllYear);
 			predicates.add(predicate);
 		}
 

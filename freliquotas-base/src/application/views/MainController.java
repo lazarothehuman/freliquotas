@@ -26,7 +26,7 @@ public class MainController implements Initializable {
 	
 	/*
 	 * 
-	 * trocar distrito paa orgao
+	 * version 1.3
 	 */
 
 	int DIA_ENVIO_MENSAGEM = 28;
@@ -137,7 +137,7 @@ public class MainController implements Initializable {
 						+ mes.toUpperCase() + " ?");
 		Optional<ButtonType> result = alert.showAndWait();
 		if (result.get() == ButtonType.OK) {
-			List<Membro> membros = dataManager.findMembros(null, null, null, user.getDistrito(), Boolean.TRUE);
+			List<Membro> membros = dataManager.findMembros(null, null, null, user.getDistrito(), Boolean.TRUE, Boolean.FALSE);
 			if (membros != null) {
 				notifcationManager.sendSmsNotification(membros);
 			}
@@ -150,7 +150,7 @@ public class MainController implements Initializable {
 		user = dataManager.findCurrentUser();
 		if(DIA_ENVIO_MENSAGEM == Calendar.getInstance().get(Calendar.DATE)) {
 			AlertUtils.alertDataDeEnvioAutomatico(DIA_ENVIO_MENSAGEM);
-			List<Membro> membros = dataManager.findMembros(null, null, null, user.getDistrito(), Boolean.TRUE);
+			List<Membro> membros = dataManager.findMembros(null, null, null, user.getDistrito(), Boolean.TRUE, Boolean.FALSE);
 			try {
 				notifcationManager.sendSms(user.getTelefone(), "Mensagens enviadas com sucesso");
 			} catch (IOException e) {

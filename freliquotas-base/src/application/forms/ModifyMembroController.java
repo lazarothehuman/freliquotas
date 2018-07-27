@@ -8,6 +8,7 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -40,6 +41,9 @@ public class ModifyMembroController implements Initializable {
 
 	@FXML
 	TextField biTf = new TextField();
+	
+	@FXML
+	CheckBox paidAllYear = new CheckBox();
 
 	Membro membro;
 
@@ -60,6 +64,7 @@ public class ModifyMembroController implements Initializable {
 			emailTf.setText(membro.getEmail());
 			cartaoMembroTf.setText(membro.getNumeroCartao());
 			biTf.setText(membro.getBi());
+			paidAllYear.setSelected(membro.getPaidAllYear());
 		}
 	}
 
@@ -91,6 +96,7 @@ public class ModifyMembroController implements Initializable {
 				membro.setBi(bi);
 			if (numeroCartao != null && !numeroCartao.isEmpty())
 				membro.setNumeroCartao(numeroCartao);
+			membro.setPaidAllYear(paidAllYear.isSelected());
 			dataManager.updateMembro(membro);
 			AlertUtils.alertSucesso("Membro");
 			Stage stage = (Stage) modifyBtn.getScene().getWindow();

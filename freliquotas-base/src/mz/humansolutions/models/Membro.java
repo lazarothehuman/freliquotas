@@ -44,6 +44,9 @@ public class Membro {
 	private List<Pagamento> pagamentos = new ArrayList<>();
 	
 	@Column(nullable =false, columnDefinition="bit")
+	private Boolean paidAllYear = false;
+	
+	@Column(nullable =false, columnDefinition="bit")
 	private Boolean active = true;
 
 	public Long getId() {
@@ -114,13 +117,16 @@ public class Membro {
 		this.active = active;
 	}
 	
+	public Boolean getPaidAllYear() {
+		return paidAllYear;
+	}
+
+	public void setPaidAllYear(Boolean paidAllYear) {
+		this.paidAllYear = paidAllYear;
+	}
+
 	@Override
 	public String toString() {
 		return this.nome;
-	}
-	
-	
-	
-	
-
+	}	
 }

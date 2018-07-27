@@ -49,6 +49,10 @@ public class NotificationManagerImp implements NotificationManager {
 		// nome do mes
 		if (membros != null) {
 			for (Membro membro : membros) {
+				if(membro.getPaidAllYear())
+					membros.remove(membro);
+			}
+			for (Membro membro : membros) {
 				String recipient = membro.getTelefone();
 				String message = "Caro(a) camarada, "+membro.getNome().toUpperCase()+" lembramos-lhe do seu dever de pagamento de QUOTAS e do envio do comprovativo a Sede da Cidade. Caso ja tenha feito, ignore esta mensagem.\n\nDAF Cidade de Maputo";
 				if (recipient != null) {
