@@ -34,7 +34,7 @@ public class NotificationManagerImpTest {
 			
 			System.out.println("Nome:"+membro.getNome()+"\nNumero:"+membro.getTelefone().trim());
 			if(membro.getTelefone()!=null) {
-				//notificationManager.sendSms(membro.getTelefone(), message);
+				notificationManager.sendSms(membro.getTelefone(), message);
 			}
 		}
 		
