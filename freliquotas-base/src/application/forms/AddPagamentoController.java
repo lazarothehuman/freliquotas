@@ -79,7 +79,7 @@ public class AddPagamentoController implements Initializable {
 		List<Membro> membros = dataManager.findMembros(Boolean.TRUE);
 		if (membros != null) {
 			ArrayList<String> nomeMembros = new ArrayList<>();
-			for (Membro membro : membros) 
+			for (Membro membro : membros)
 				nomeMembros.add(membro.getNome());
 			TextFields.bindAutoCompletion(nomeMembroTf, nomeMembros.toArray(new String[nomeMembros.size()]));
 		}
@@ -510,6 +510,11 @@ public class AddPagamentoController implements Initializable {
 					membro.getPagamentos().add(pagamento);
 				}
 			}
+			if (janeiroCb.isSelected() && fevreiroCb.isSelected() && marciCb.isSelected() && abrilCb.isSelected()
+					&& maioCb.isSelected() && junhoCb.isSelected() && julhoCb.isSelected() && agostoCb.isSelected()
+					&& setembroCb.isSelected() && outubroCb.isSelected() && novembroCb.isSelected()
+					&& dezembroCb.isSelected())
+				membro.setPaidAllYear(true);
 			dataManager.updateMembro(membro);
 			AlertUtils.alertSucesso("Pagamento registado com sucesso.");
 			Stage stage = (Stage) registerBtn.getScene().getWindow();

@@ -7,15 +7,17 @@ import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -24,6 +26,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import mz.humansolutions.managers.DataManager;
 import mz.humansolutions.managers.DataManagerImp;
 import mz.humansolutions.managers.NotificationManager;
@@ -40,8 +43,8 @@ import mz.humansolutions.utils.FrameManager;
 public class ViewMembroMapsController implements Initializable {
 
 	// meter colunas para identifcar o mes
-	
-	int ANO= Calendar.getInstance().get(Calendar.YEAR);
+
+	int ANO = Calendar.getInstance().get(Calendar.YEAR);
 
 	List<Membro> membros;
 
@@ -68,53 +71,66 @@ public class ViewMembroMapsController implements Initializable {
 	@FXML
 	TableColumn<Membro, String> nomeColumn;
 	@FXML
-	TableColumn<Membro, List<Pagamento>> quotaJanColumn;
+	TableColumn<Membro, String> quotaJanColumn;
 	@FXML
-	TableColumn<Membro, List<Pagamento>> quotaAprColumn;
+	TableColumn<Membro, String> quotaAprColumn;
 	@FXML
-	TableColumn<Membro, List<Pagamento>> quotaFevColumn;
+	TableColumn<Membro, String> quotaFevColumn;
 	@FXML
-	TableColumn<Membro, List<Pagamento>> quotaMarchColumn;
+	TableColumn<Membro, String> quotaMarchColumn;
 	@FXML
-	TableColumn<Membro, List<Pagamento>> quotaMayColumn;
+	TableColumn<Membro, String> quotaMayColumn;
 	@FXML
-	TableColumn<Membro, List<Pagamento>> quotaJunColumn;
+	TableColumn<Membro, String> quotaJunColumn;
 	@FXML
-	TableColumn<Membro, List<Pagamento>> quotaJulColumn;
+	TableColumn<Membro, String> quotaJulColumn;
 	@FXML
-	TableColumn<Membro, List<Pagamento>> quotaAugColumn;
+	TableColumn<Membro, String> quotaAugColumn;
 	@FXML
-	TableColumn<Membro, List<Pagamento>> quotaSepColumn;
+	TableColumn<Membro, String> quotaSepColumn;
 	@FXML
-	TableColumn<Membro, List<Pagamento>> quotaOctColumn;
+	TableColumn<Membro, String> quotaOctColumn;
 	@FXML
-	TableColumn<Membro, List<Pagamento>> quotaNovColumn;
+	TableColumn<Membro, String> quotaNovColumn;
 	@FXML
-	TableColumn<Membro, List<Pagamento>> quotaDecColumn;
+	TableColumn<Membro, String> quotaDecColumn;
 	@FXML
-	TableColumn<Membro, List<Pagamento>> fcJanColumn;
+	TableColumn<Membro, String> fcJanColumn;
 	@FXML
-	TableColumn<Membro, List<Pagamento>> fcFevColumn;
+	TableColumn<Membro, String> fcFevColumn;
 	@FXML
-	TableColumn<Membro, List<Pagamento>> fcMarchColumn;
+	TableColumn<Membro, String> fcMarchColumn;
 	@FXML
-	TableColumn<Membro, List<Pagamento>> fcAprColumn;
+	TableColumn<Membro, String> fcAprColumn;
 	@FXML
-	TableColumn<Membro, List<Pagamento>> fcMayColumn;
+	TableColumn<Membro, String> fcMayColumn;
 	@FXML
-	TableColumn<Membro, List<Pagamento>> fcJunColumn;
+	TableColumn<Membro, String> fcJunColumn;
 	@FXML
-	TableColumn<Membro, List<Pagamento>> fcJulColumn;
+	TableColumn<Membro, String> fcJulColumn;
 	@FXML
-	TableColumn<Membro, List<Pagamento>> fcAugColumn;
+	TableColumn<Membro, String> fcAugColumn;
 	@FXML
-	TableColumn<Membro, List<Pagamento>> fcSepColumn;
+	TableColumn<Membro, String> fcSepColumn;
 	@FXML
-	TableColumn<Membro, List<Pagamento>> fcOctColumn;
+	TableColumn<Membro, String> fcOctColumn;
 	@FXML
-	TableColumn<Membro, List<Pagamento>> fcNovColumn;
+	TableColumn<Membro, String> fcNovColumn;
 	@FXML
-	TableColumn<Membro, List<Pagamento>> fcDezColumn;
+	TableColumn<Membro, String> fcDezColumn;
+
+	PropertyValueFactory<Membro, String> janFactory = new PropertyValueFactory<>("pagamentos");
+	PropertyValueFactory<Membro, String> fevFactory = new PropertyValueFactory<>("pagamentos");
+	PropertyValueFactory<Membro, String> marchFactory = new PropertyValueFactory<>("pagamentos");
+	PropertyValueFactory<Membro, String> aprFactory = new PropertyValueFactory<>("pagamentos");
+	PropertyValueFactory<Membro, String> mayFactory = new PropertyValueFactory<>("pagamentos");
+	PropertyValueFactory<Membro, String> junFactory = new PropertyValueFactory<>("pagamentos");
+	PropertyValueFactory<Membro, String> julFactory = new PropertyValueFactory<>("pagamentos");
+	PropertyValueFactory<Membro, String> augFactory = new PropertyValueFactory<>("pagamentos");
+	PropertyValueFactory<Membro, String> sepFactory = new PropertyValueFactory<>("pagamentos");
+	PropertyValueFactory<Membro, String> octFactory = new PropertyValueFactory<>("pagamentos");
+	PropertyValueFactory<Membro, String> novFactory = new PropertyValueFactory<>("pagamentos");
+	PropertyValueFactory<Membro, String> decFactory = new PropertyValueFactory<>("pagamentos");
 	DataManager dataManager = new DataManagerImp();
 
 	NotificationManager notificationManager = new NotificationManagerImp();
@@ -127,7 +143,7 @@ public class ViewMembroMapsController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		user = dataManager.findCurrentUser();
 		Distrito distrito = null;
-		anoTf.setText(Calendar.getInstance().get(Calendar.YEAR)+"");
+		anoTf.setText(Calendar.getInstance().get(Calendar.YEAR) + "");
 		if (user != null) {
 			distrito = user.getDistrito();
 			lblUser.setText("" + user.getName());
@@ -138,18 +154,7 @@ public class ViewMembroMapsController implements Initializable {
 			this.distrito.setItems(FXCollections.observableArrayList(distritos));
 		membros = dataManager.findMembros(null, null, null, distrito, Boolean.TRUE, null);
 		nomeColumn.setCellValueFactory(new PropertyValueFactory<Membro, String>("nome"));
-		PropertyValueFactory<Membro, List<Pagamento>> janFactory = new PropertyValueFactory<>("pagamentos");
-		PropertyValueFactory<Membro, List<Pagamento>> fevFactory = new PropertyValueFactory<>("pagamentos");
-		PropertyValueFactory<Membro, List<Pagamento>> marchFactory = new PropertyValueFactory<>("pagamentos");
-		PropertyValueFactory<Membro, List<Pagamento>> aprFactory = new PropertyValueFactory<>("pagamentos");
-		PropertyValueFactory<Membro, List<Pagamento>> mayFactory = new PropertyValueFactory<>("pagamentos");
-		PropertyValueFactory<Membro, List<Pagamento>> junFactory = new PropertyValueFactory<>("pagamentos");
-		PropertyValueFactory<Membro, List<Pagamento>> julFactory = new PropertyValueFactory<>("pagamentos");
-		PropertyValueFactory<Membro, List<Pagamento>> augFactory = new PropertyValueFactory<>("pagamentos");
-		PropertyValueFactory<Membro, List<Pagamento>> sepFactory = new PropertyValueFactory<>("pagamentos");
-		PropertyValueFactory<Membro, List<Pagamento>> octFactory = new PropertyValueFactory<>("pagamentos");
-		PropertyValueFactory<Membro, List<Pagamento>> novFactory = new PropertyValueFactory<>("pagamentos");
-		PropertyValueFactory<Membro, List<Pagamento>> decFactory = new PropertyValueFactory<>("pagamentos");
+
 		quotaJanColumn.setCellValueFactory(janFactory);
 		quotaFevColumn.setCellValueFactory(fevFactory);
 		quotaMarchColumn.setCellValueFactory(marchFactory);
@@ -174,350 +179,369 @@ public class ViewMembroMapsController implements Initializable {
 		fcOctColumn.setCellValueFactory(octFactory);
 		fcNovColumn.setCellValueFactory(novFactory);
 		fcDezColumn.setCellValueFactory(decFactory);
-		quotaJanColumn.setCellFactory(col -> new TableCell<Membro, List<Pagamento>>() {
-			@Override
-			public void updateItem(List<Pagamento> pagamentos, boolean empty) {
-				if (empty)
-					setText(null);
-				else {
-					for (Pagamento pagamento : pagamentos) {
-						if (pagamento.getTipoPagamento().equals(TipoPagamento.Quota)
-								&& pagamento.getMes().equals(Mes.Janeiro)&& pagamento.getAno()==ANO)
-							setText(pagamento.getValor() + "Mt");
-					}
-				}
-			}
-		});
-		fcJanColumn.setCellFactory(col -> new TableCell<Membro, List<Pagamento>>() {
-			@Override
-			public void updateItem(List<Pagamento> pagamentos, boolean empty) {
-				if (empty)
-					setText(null);
-				else {
-					for (Pagamento pagamento : pagamentos) {
-						if (pagamento.getTipoPagamento().equals(TipoPagamento.Fundo_comité)
-								&& pagamento.getMes().equals(Mes.Janeiro)&& pagamento.getAno()==ANO)
-							setText(pagamento.getValor() + "Mt");
-					}
-				}
-			}
-		});
-		quotaFevColumn.setCellFactory(col -> new TableCell<Membro, List<Pagamento>>() {
-			@Override
-			public void updateItem(List<Pagamento> pagamentos, boolean empty) {
-				if (empty)
-					setText(null);
-				else {
-					for (Pagamento pagamento : pagamentos) {
-						if (pagamento.getTipoPagamento().equals(TipoPagamento.Quota)
-								&& pagamento.getMes().equals(Mes.Fevereiro)&& pagamento.getAno()==ANO)
-							setText(pagamento.getValor() + "Mt");
-					}
-				}
-			}
-		});
-		fcFevColumn.setCellFactory(col -> new TableCell<Membro, List<Pagamento>>() {
-			@Override
-			public void updateItem(List<Pagamento> pagamentos, boolean empty) {
-				if (empty)
-					setText(null);
-				else {
-					for (Pagamento pagamento : pagamentos) {
-						if (pagamento.getTipoPagamento().equals(TipoPagamento.Fundo_comité)
-								&& pagamento.getMes().equals(Mes.Fevereiro)&& pagamento.getAno()==ANO)
-							setText(pagamento.getValor() + "Mt");
-					}
-				}
-			}
-		});
-		quotaMarchColumn.setCellFactory(col -> new TableCell<Membro, List<Pagamento>>() {
-			@Override
-			public void updateItem(List<Pagamento> pagamentos, boolean empty) {
-				if (empty)
-					setText(null);
-				else {
-					for (Pagamento pagamento : pagamentos) {
-						if (pagamento.getTipoPagamento().equals(TipoPagamento.Quota)
-								&& pagamento.getMes().equals(Mes.Março)&& pagamento.getAno()==ANO)
-							setText(pagamento.getValor() + "Mt");
-					}
-				}
-			}
-		});
-		fcMarchColumn.setCellFactory(col -> new TableCell<Membro, List<Pagamento>>() {
-			@Override
-			public void updateItem(List<Pagamento> pagamentos, boolean empty) {
-				if (empty)
-					setText(null);
-				else {
-					for (Pagamento pagamento : pagamentos) {
-						if (pagamento.getTipoPagamento().equals(TipoPagamento.Fundo_comité)
-								&& pagamento.getMes().equals(Mes.Março)&& pagamento.getAno()==ANO)
-							setText(pagamento.getValor() + "Mt");
-					}
-				}
-			}
-		});
 
-		quotaAprColumn.setCellFactory(col -> new TableCell<Membro, List<Pagamento>>() {
-			@Override
-			public void updateItem(List<Pagamento> pagamentos, boolean empty) {
-				if (empty)
-					setText(null);
-				else {
-					for (Pagamento pagamento : pagamentos) {
-						if (pagamento.getTipoPagamento().equals(TipoPagamento.Quota)
-								&& pagamento.getMes().equals(Mes.Abril)&& pagamento.getAno()==ANO)
-							setText(pagamento.getValor() + "Mt");
-					}
-				}
-			}
-		});
-		fcAprColumn.setCellFactory(col -> new TableCell<Membro, List<Pagamento>>() {
-			@Override
-			public void updateItem(List<Pagamento> pagamentos, boolean empty) {
-				if (empty)
-					setText(null);
-				else {
-					for (Pagamento pagamento : pagamentos) {
-						if (pagamento.getTipoPagamento().equals(TipoPagamento.Fundo_comité)
-								&& pagamento.getMes().equals(Mes.Abril)&& pagamento.getAno()==ANO)
-							setText(pagamento.getValor() + "Mt");
-					}
-				}
-			}
-		});
+		quotaJanColumn.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Membro, String>, ObservableValue<String>>() {
 
-		quotaMayColumn.setCellFactory(col -> new TableCell<Membro, List<Pagamento>>() {
-			@Override
-			public void updateItem(List<Pagamento> pagamentos, boolean empty) {
-				if (empty)
-					setText(null);
-				else {
-					for (Pagamento pagamento : pagamentos) {
-						if (pagamento.getTipoPagamento().equals(TipoPagamento.Quota)
-								&& pagamento.getMes().equals(Mes.Maio)&& pagamento.getAno()==ANO)
-							setText(pagamento.getValor() + "Mt");
+					@Override
+					public ObservableValue<String> call(CellDataFeatures<Membro, String> membro) {
+						Membro member = membro.getValue();
+						for (Pagamento pagamento : member.getPagamentos()) {
+							if (pagamento.getTipoPagamento().equals(TipoPagamento.Quota)
+									&& pagamento.getMes().equals(Mes.Janeiro) && pagamento.getAno() == ANO) {
+								return new SimpleStringProperty(pagamento.getValor() + " Mt");
+							}
+						}
+						return new SimpleStringProperty(null);
 					}
-				}
-			}
-		});
-		fcMayColumn.setCellFactory(col -> new TableCell<Membro, List<Pagamento>>() {
-			@Override
-			public void updateItem(List<Pagamento> pagamentos, boolean empty) {
-				if (empty)
-					setText(null);
-				else {
-					for (Pagamento pagamento : pagamentos) {
-						if (pagamento.getTipoPagamento().equals(TipoPagamento.Fundo_comité)
-								&& pagamento.getMes().equals(Mes.Maio)&& pagamento.getAno()==ANO)
-							setText(pagamento.getValor() + "Mt");
-					}
-				}
-			}
-		});
-		quotaJulColumn.setCellFactory(col -> new TableCell<Membro, List<Pagamento>>() {
-			@Override
-			public void updateItem(List<Pagamento> pagamentos, boolean empty) {
-				if (empty)
-					setText(null);
-				else {
-					for (Pagamento pagamento : pagamentos) {
-						if (pagamento.getTipoPagamento().equals(TipoPagamento.Quota)
-								&& pagamento.getMes().equals(Mes.Julho)&& pagamento.getAno()==ANO)
-							setText(pagamento.getValor() + "Mt");
-					}
-				}
-			}
-		});
-		fcJulColumn.setCellFactory(col -> new TableCell<Membro, List<Pagamento>>() {
-			@Override
-			public void updateItem(List<Pagamento> pagamentos, boolean empty) {
-				if (empty)
-					setText(null);
-				else {
-					for (Pagamento pagamento : pagamentos) {
-						if (pagamento.getTipoPagamento().equals(TipoPagamento.Fundo_comité)
-								&& pagamento.getMes().equals(Mes.Julho)&& pagamento.getAno()==ANO)
-							setText(pagamento.getValor() + "Mt");
-					}
-				}
-			}
-		});
+				});
 
-		quotaJunColumn.setCellFactory(col -> new TableCell<Membro, List<Pagamento>>() {
-			@Override
-			public void updateItem(List<Pagamento> pagamentos, boolean empty) {
-				if (empty)
-					setText(null);
-				else {
-					for (Pagamento pagamento : pagamentos) {
-						if (pagamento.getTipoPagamento().equals(TipoPagamento.Quota)
-								&& pagamento.getMes().equals(Mes.Junho)&& pagamento.getAno()==ANO)
-							setText(pagamento.getValor() + "Mt");
-					}
-				}
-			}
-		});
-		fcJunColumn.setCellFactory(col -> new TableCell<Membro, List<Pagamento>>() {
-			@Override
-			public void updateItem(List<Pagamento> pagamentos, boolean empty) {
-				if (empty)
-					setText(null);
-				else {
-					for (Pagamento pagamento : pagamentos) {
-						if (pagamento.getTipoPagamento().equals(TipoPagamento.Fundo_comité)
-								&& pagamento.getMes().equals(Mes.Junho) && pagamento.getAno()==ANO)
-							setText(pagamento.getValor() + "Mt");
-					}
-				}
-			}
-		});
+		fcJanColumn.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Membro, String>, ObservableValue<String>>() {
 
-		quotaAugColumn.setCellFactory(col -> new TableCell<Membro, List<Pagamento>>() {
-			@Override
-			public void updateItem(List<Pagamento> pagamentos, boolean empty) {
-				if (empty)
-					setText(null);
-				else {
-					for (Pagamento pagamento : pagamentos) {
-						if (pagamento.getTipoPagamento().equals(TipoPagamento.Quota)
-								&& pagamento.getMes().equals(Mes.Agosto)&& pagamento.getAno()==ANO)
-							setText(pagamento.getValor() + "Mt");
+					@Override
+					public ObservableValue<String> call(CellDataFeatures<Membro, String> membro) {
+						Membro member = membro.getValue();
+						for (Pagamento pagamento : member.getPagamentos()) {
+							if (pagamento.getTipoPagamento().equals(TipoPagamento.Fundo_comité)
+									&& pagamento.getMes().equals(Mes.Janeiro) && pagamento.getAno() == ANO) {
+								return new SimpleStringProperty(pagamento.getValor() + " Mt");
+							}
+						}
+						return new SimpleStringProperty(null);
 					}
-				}
-			}
-		});
-		fcAugColumn.setCellFactory(col -> new TableCell<Membro, List<Pagamento>>() {
-			@Override
-			public void updateItem(List<Pagamento> pagamentos, boolean empty) {
-				if (empty)
-					setText(null);
-				else {
-					for (Pagamento pagamento : pagamentos) {
-						if (pagamento.getTipoPagamento().equals(TipoPagamento.Fundo_comité)
-								&& pagamento.getMes().equals(Mes.Agosto)&& pagamento.getAno()==ANO)
-							setText(pagamento.getValor() + "Mt");
-					}
-				}
-			}
-		});
+				});
 
-		quotaSepColumn.setCellFactory(col -> new TableCell<Membro, List<Pagamento>>() {
-			@Override
-			public void updateItem(List<Pagamento> pagamentos, boolean empty) {
-				if (empty)
-					setText(null);
-				else {
-					for (Pagamento pagamento : pagamentos) {
-						if (pagamento.getTipoPagamento().equals(TipoPagamento.Quota)
-								&& pagamento.getMes().equals(Mes.Setembro)&& pagamento.getAno()==ANO)
-							setText(pagamento.getValor() + "Mt");
-					}
-				}
-			}
-		});
-		fcSepColumn.setCellFactory(col -> new TableCell<Membro, List<Pagamento>>() {
-			@Override
-			public void updateItem(List<Pagamento> pagamentos, boolean empty) {
-				if (empty)
-					setText(null);
-				else {
-					for (Pagamento pagamento : pagamentos) {
-						if (pagamento.getTipoPagamento().equals(TipoPagamento.Fundo_comité)
-								&& pagamento.getMes().equals(Mes.Setembro)&& pagamento.getAno()==ANO)
-							setText(pagamento.getValor() + "Mt");
-					}
-				}
-			}
-		});
-		quotaOctColumn.setCellFactory(col -> new TableCell<Membro, List<Pagamento>>() {
-			@Override
-			public void updateItem(List<Pagamento> pagamentos, boolean empty) {
-				if (empty)
-					setText(null);
-				else {
-					for (Pagamento pagamento : pagamentos) {
-						if (pagamento.getTipoPagamento().equals(TipoPagamento.Quota)
-								&& pagamento.getMes().equals(Mes.Outubro)&& pagamento.getAno()==ANO)
-							setText(pagamento.getValor() + "Mt");
-					}
-				}
-			}
-		});
-		fcOctColumn.setCellFactory(col -> new TableCell<Membro, List<Pagamento>>() {
-			@Override
-			public void updateItem(List<Pagamento> pagamentos, boolean empty) {
-				if (empty)
-					setText(null);
-				else {
-					for (Pagamento pagamento : pagamentos) {
-						if (pagamento.getTipoPagamento().equals(TipoPagamento.Fundo_comité)
-								&& pagamento.getMes().equals(Mes.Outubro)&& pagamento.getAno()==ANO)
-							setText(pagamento.getValor() + "Mt");
-					}
-				}
-			}
-		});
+		quotaFevColumn.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Membro, String>, ObservableValue<String>>() {
 
-		quotaNovColumn.setCellFactory(col -> new TableCell<Membro, List<Pagamento>>() {
-			@Override
-			public void updateItem(List<Pagamento> pagamentos, boolean empty) {
-				if (empty)
-					setText(null);
-				else {
-					for (Pagamento pagamento : pagamentos) {
-						if (pagamento.getTipoPagamento().equals(TipoPagamento.Quota)
-								&& pagamento.getMes().equals(Mes.Novembro)&& pagamento.getAno()==ANO)
-							setText(pagamento.getValor() + "Mt");
+					@Override
+					public ObservableValue<String> call(CellDataFeatures<Membro, String> membro) {
+						Membro member = membro.getValue();
+						for (Pagamento pagamento : member.getPagamentos()) {
+							if (pagamento.getTipoPagamento().equals(TipoPagamento.Quota)
+									&& pagamento.getMes().equals(Mes.Fevereiro) && pagamento.getAno() == ANO) 
+								return new SimpleStringProperty(pagamento.getValor() + " Mt");
+						}
+						return new SimpleStringProperty(null);
 					}
-				}
-			}
-		});
-		fcNovColumn.setCellFactory(col -> new TableCell<Membro, List<Pagamento>>() {
-			@Override
-			public void updateItem(List<Pagamento> pagamentos, boolean empty) {
-				if (empty)
-					setText(null);
-				else {
-					for (Pagamento pagamento : pagamentos) {
-						if (pagamento.getTipoPagamento().equals(TipoPagamento.Fundo_comité)
-								&& pagamento.getMes().equals(Mes.Novembro)&& pagamento.getAno()==ANO)
-							setText(pagamento.getValor() + "Mt");
-					}
-				}
-			}
-		});
+				});
 
-		quotaDecColumn.setCellFactory(col -> new TableCell<Membro, List<Pagamento>>() {
-			@Override
-			public void updateItem(List<Pagamento> pagamentos, boolean empty) {
-				if (empty)
-					setText(null);
-				else {
-					for (Pagamento pagamento : pagamentos) {
-						if (pagamento.getTipoPagamento().equals(TipoPagamento.Quota)
-								&& pagamento.getMes().equals(Mes.Dezembro)&& pagamento.getAno()==ANO)
-							setText(pagamento.getValor() + "Mt");
-					}
-				}
-			}
-		});
-		fcDezColumn.setCellFactory(col -> new TableCell<Membro, List<Pagamento>>() {
-			@Override
-			public void updateItem(List<Pagamento> pagamentos, boolean empty) {
-				if (empty)
-					setText(null);
-				else {
-					for (Pagamento pagamento : pagamentos) {
-						if (pagamento.getTipoPagamento().equals(TipoPagamento.Fundo_comité)
-								&& pagamento.getMes().equals(Mes.Dezembro)&& pagamento.getAno()==ANO)
-							setText(pagamento.getValor() + "Mt");
-					}
-				}
-			}
-		});
+		fcFevColumn.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Membro, String>, ObservableValue<String>>() {
 
+					@Override
+					public ObservableValue<String> call(CellDataFeatures<Membro, String> membro) {
+						Membro member = membro.getValue();
+						for (Pagamento pagamento : member.getPagamentos()) {
+							if (pagamento.getTipoPagamento().equals(TipoPagamento.Fundo_comité)
+									&& pagamento.getMes().equals(Mes.Fevereiro) && pagamento.getAno() == ANO) 
+								return new SimpleStringProperty(pagamento.getValor() + " Mt");
+						}
+						return new SimpleStringProperty(null);
+					}
+				});
+
+		quotaMarchColumn.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Membro, String>, ObservableValue<String>>() {
+
+					@Override
+					public ObservableValue<String> call(CellDataFeatures<Membro, String> membro) {
+						Membro member = membro.getValue();
+						for (Pagamento pagamento : member.getPagamentos()) {
+							if (pagamento.getTipoPagamento().equals(TipoPagamento.Quota)
+									&& pagamento.getMes().equals(Mes.Março) && pagamento.getAno() == ANO) 
+								return new SimpleStringProperty(pagamento.getValor() + " Mt");
+						}
+						return new SimpleStringProperty(null);
+					}
+				});
+
+		fcMarchColumn.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Membro, String>, ObservableValue<String>>() {
+
+					@Override
+					public ObservableValue<String> call(CellDataFeatures<Membro, String> membro) {
+						Membro member = membro.getValue();
+						for (Pagamento pagamento : member.getPagamentos()) {
+							if (pagamento.getTipoPagamento().equals(TipoPagamento.Fundo_comité)
+									&& pagamento.getMes().equals(Mes.Março) && pagamento.getAno() == ANO) 
+								return new SimpleStringProperty(pagamento.getValor() + " Mt");
+						}
+						return new SimpleStringProperty(null);
+					}
+				});
+		
+		quotaAprColumn.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Membro, String>, ObservableValue<String>>() {
+
+					@Override
+					public ObservableValue<String> call(CellDataFeatures<Membro, String> membro) {
+						Membro member = membro.getValue();
+						for (Pagamento pagamento : member.getPagamentos()) {
+							if (pagamento.getTipoPagamento().equals(TipoPagamento.Quota)
+									&& pagamento.getMes().equals(Mes.Abril) && pagamento.getAno() == ANO) 
+								return new SimpleStringProperty(pagamento.getValor() + " Mt");
+						}
+						return new SimpleStringProperty(null);
+					}
+				});
+
+		fcAprColumn.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Membro, String>, ObservableValue<String>>() {
+
+					@Override
+					public ObservableValue<String> call(CellDataFeatures<Membro, String> membro) {
+						Membro member = membro.getValue();
+						for (Pagamento pagamento : member.getPagamentos()) {
+							if (pagamento.getTipoPagamento().equals(TipoPagamento.Fundo_comité)
+									&& pagamento.getMes().equals(Mes.Abril) && pagamento.getAno() == ANO) 
+								return new SimpleStringProperty(pagamento.getValor() + " Mt");
+						}
+						return new SimpleStringProperty(null);
+					}
+				});
+		
+		quotaMayColumn.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Membro, String>, ObservableValue<String>>() {
+
+					@Override
+					public ObservableValue<String> call(CellDataFeatures<Membro, String> membro) {
+						Membro member = membro.getValue();
+						for (Pagamento pagamento : member.getPagamentos()) {
+							if (pagamento.getTipoPagamento().equals(TipoPagamento.Quota)
+									&& pagamento.getMes().equals(Mes.Maio) && pagamento.getAno() == ANO) 
+								return new SimpleStringProperty(pagamento.getValor() + " Mt");
+						}
+						return new SimpleStringProperty(null);
+					}
+				});
+
+		fcMayColumn.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Membro, String>, ObservableValue<String>>() {
+
+					@Override
+					public ObservableValue<String> call(CellDataFeatures<Membro, String> membro) {
+						Membro member = membro.getValue();
+						for (Pagamento pagamento : member.getPagamentos()) {
+							if (pagamento.getTipoPagamento().equals(TipoPagamento.Fundo_comité)
+									&& pagamento.getMes().equals(Mes.Maio) && pagamento.getAno() == ANO) 
+								return new SimpleStringProperty(pagamento.getValor() + " Mt");
+						}
+						return new SimpleStringProperty(null);
+					}
+				});
+		
+		quotaJunColumn.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Membro, String>, ObservableValue<String>>() {
+
+					@Override
+					public ObservableValue<String> call(CellDataFeatures<Membro, String> membro) {
+						Membro member = membro.getValue();
+						for (Pagamento pagamento : member.getPagamentos()) {
+							if (pagamento.getTipoPagamento().equals(TipoPagamento.Quota)
+									&& pagamento.getMes().equals(Mes.Junho) && pagamento.getAno() == ANO) 
+								return new SimpleStringProperty(pagamento.getValor() + " Mt");
+						}
+						return new SimpleStringProperty(null);
+					}
+				});
+
+		fcJunColumn.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Membro, String>, ObservableValue<String>>() {
+
+					@Override
+					public ObservableValue<String> call(CellDataFeatures<Membro, String> membro) {
+						Membro member = membro.getValue();
+						for (Pagamento pagamento : member.getPagamentos()) {
+							if (pagamento.getTipoPagamento().equals(TipoPagamento.Fundo_comité)
+									&& pagamento.getMes().equals(Mes.Junho) && pagamento.getAno() == ANO) 
+								return new SimpleStringProperty(pagamento.getValor() + " Mt");
+						}
+						return new SimpleStringProperty(null);
+					}
+				});
+		
+		quotaJulColumn.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Membro, String>, ObservableValue<String>>() {
+
+					@Override
+					public ObservableValue<String> call(CellDataFeatures<Membro, String> membro) {
+						Membro member = membro.getValue();
+						for (Pagamento pagamento : member.getPagamentos()) {
+							if (pagamento.getTipoPagamento().equals(TipoPagamento.Quota)
+									&& pagamento.getMes().equals(Mes.Julho) && pagamento.getAno() == ANO) 
+								return new SimpleStringProperty(pagamento.getValor() + " Mt");
+						}
+						return new SimpleStringProperty(null);
+					}
+				});
+
+		fcJulColumn.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Membro, String>, ObservableValue<String>>() {
+
+					@Override
+					public ObservableValue<String> call(CellDataFeatures<Membro, String> membro) {
+						Membro member = membro.getValue();
+						for (Pagamento pagamento : member.getPagamentos()) {
+							if (pagamento.getTipoPagamento().equals(TipoPagamento.Fundo_comité)
+									&& pagamento.getMes().equals(Mes.Julho) && pagamento.getAno() == ANO) 
+								return new SimpleStringProperty(pagamento.getValor() + " Mt");
+						}
+						return new SimpleStringProperty(null);
+					}
+				});
+		
+		quotaAugColumn.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Membro, String>, ObservableValue<String>>() {
+
+					@Override
+					public ObservableValue<String> call(CellDataFeatures<Membro, String> membro) {
+						Membro member = membro.getValue();
+						for (Pagamento pagamento : member.getPagamentos()) {
+							if (pagamento.getTipoPagamento().equals(TipoPagamento.Quota)
+									&& pagamento.getMes().equals(Mes.Agosto) && pagamento.getAno() == ANO) 
+								return new SimpleStringProperty(pagamento.getValor() + " Mt");
+						}
+						return new SimpleStringProperty(null);
+					}
+				});
+
+		fcAugColumn.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Membro, String>, ObservableValue<String>>() {
+
+					@Override
+					public ObservableValue<String> call(CellDataFeatures<Membro, String> membro) {
+						Membro member = membro.getValue();
+						for (Pagamento pagamento : member.getPagamentos()) {
+							if (pagamento.getTipoPagamento().equals(TipoPagamento.Fundo_comité)
+									&& pagamento.getMes().equals(Mes.Agosto) && pagamento.getAno() == ANO) 
+								return new SimpleStringProperty(pagamento.getValor() + " Mt");
+						}
+						return new SimpleStringProperty(null);
+					}
+				});
+		
+		quotaSepColumn.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Membro, String>, ObservableValue<String>>() {
+
+					@Override
+					public ObservableValue<String> call(CellDataFeatures<Membro, String> membro) {
+						Membro member = membro.getValue();
+						for (Pagamento pagamento : member.getPagamentos()) {
+							if (pagamento.getTipoPagamento().equals(TipoPagamento.Quota)
+									&& pagamento.getMes().equals(Mes.Setembro) && pagamento.getAno() == ANO) 
+								return new SimpleStringProperty(pagamento.getValor() + " Mt");
+						}
+						return new SimpleStringProperty(null);
+					}
+				});
+
+		fcSepColumn.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Membro, String>, ObservableValue<String>>() {
+
+					@Override
+					public ObservableValue<String> call(CellDataFeatures<Membro, String> membro) {
+						Membro member = membro.getValue();
+						for (Pagamento pagamento : member.getPagamentos()) {
+							if (pagamento.getTipoPagamento().equals(TipoPagamento.Fundo_comité)
+									&& pagamento.getMes().equals(Mes.Setembro) && pagamento.getAno() == ANO) 
+								return new SimpleStringProperty(pagamento.getValor() + " Mt");
+						}
+						return new SimpleStringProperty(null);
+					}
+				});
+		
+		quotaOctColumn.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Membro, String>, ObservableValue<String>>() {
+
+					@Override
+					public ObservableValue<String> call(CellDataFeatures<Membro, String> membro) {
+						Membro member = membro.getValue();
+						for (Pagamento pagamento : member.getPagamentos()) {
+							if (pagamento.getTipoPagamento().equals(TipoPagamento.Quota)
+									&& pagamento.getMes().equals(Mes.Outubro) && pagamento.getAno() == ANO) 
+								return new SimpleStringProperty(pagamento.getValor() + " Mt");
+						}
+						return new SimpleStringProperty(null);
+					}
+				});
+
+		fcOctColumn.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Membro, String>, ObservableValue<String>>() {
+
+					@Override
+					public ObservableValue<String> call(CellDataFeatures<Membro, String> membro) {
+						Membro member = membro.getValue();
+						for (Pagamento pagamento : member.getPagamentos()) {
+							if (pagamento.getTipoPagamento().equals(TipoPagamento.Fundo_comité)
+									&& pagamento.getMes().equals(Mes.Outubro) && pagamento.getAno() == ANO) 
+								return new SimpleStringProperty(pagamento.getValor() + " Mt");
+						}
+						return new SimpleStringProperty(null);
+					}
+				});
+		
+		quotaNovColumn.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Membro, String>, ObservableValue<String>>() {
+
+					@Override
+					public ObservableValue<String> call(CellDataFeatures<Membro, String> membro) {
+						Membro member = membro.getValue();
+						for (Pagamento pagamento : member.getPagamentos()) {
+							if (pagamento.getTipoPagamento().equals(TipoPagamento.Quota)
+									&& pagamento.getMes().equals(Mes.Novembro) && pagamento.getAno() == ANO) 
+								return new SimpleStringProperty(pagamento.getValor() + " Mt");
+						}
+						return new SimpleStringProperty(null);
+					}
+				});
+
+		fcNovColumn.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Membro, String>, ObservableValue<String>>() {
+
+					@Override
+					public ObservableValue<String> call(CellDataFeatures<Membro, String> membro) {
+						Membro member = membro.getValue();
+						for (Pagamento pagamento : member.getPagamentos()) {
+							if (pagamento.getTipoPagamento().equals(TipoPagamento.Fundo_comité)
+									&& pagamento.getMes().equals(Mes.Novembro) && pagamento.getAno() == ANO) 
+								return new SimpleStringProperty(pagamento.getValor() + " Mt");
+						}
+						return new SimpleStringProperty(null);
+					}
+				});
+		
+		quotaDecColumn.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Membro, String>, ObservableValue<String>>() {
+
+					@Override
+					public ObservableValue<String> call(CellDataFeatures<Membro, String> membro) {
+						Membro member = membro.getValue();
+						for (Pagamento pagamento : member.getPagamentos()) {
+							if (pagamento.getTipoPagamento().equals(TipoPagamento.Quota)
+									&& pagamento.getMes().equals(Mes.Dezembro) && pagamento.getAno() == ANO) 
+								return new SimpleStringProperty(pagamento.getValor() + " Mt");
+						}
+						return new SimpleStringProperty(null);
+					}
+				});
+
+		fcDezColumn.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Membro, String>, ObservableValue<String>>() {
+
+					@Override
+					public ObservableValue<String> call(CellDataFeatures<Membro, String> membro) {
+						Membro member = membro.getValue();
+						for (Pagamento pagamento : member.getPagamentos()) {
+							if (pagamento.getTipoPagamento().equals(TipoPagamento.Fundo_comité)
+									&& pagamento.getMes().equals(Mes.Dezembro) && pagamento.getAno() == ANO) 
+								return new SimpleStringProperty(pagamento.getValor() + " Mt");
+						}
+						return new SimpleStringProperty(null);
+					}
+				});
+		
 		if (membros != null) {
 			tableMembros.setItems(FXCollections.observableArrayList(membros));
 			lblTotal.setText(membros.size() + "");
@@ -562,9 +586,11 @@ public class ViewMembroMapsController implements Initializable {
 		Distrito distritos = distrito.getValue();
 		membros = dataManager.findMembros(nome, null, null, distritos, Boolean.TRUE, null);
 		if (membros != null) {
-			
 			tableMembros.setItems(FXCollections.observableArrayList(membros));
 			lblTotal.setText(membros.size() + "");
+			for (Pagamento pagamento : membros.get(0).getPagamentos()) {
+				System.out.println("Pagamento: " + pagamento.getValor());
+			}
 		} else {
 			AlertUtils.pesquisaVazia();
 			tableMembros.setItems(null);
