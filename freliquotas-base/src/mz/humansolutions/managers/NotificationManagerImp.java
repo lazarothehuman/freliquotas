@@ -7,7 +7,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.List;
-
 import mz.humansolutions.models.Membro;
 
 
@@ -80,6 +79,23 @@ public class NotificationManagerImp implements NotificationManager {
 		} finally {
 			uc.disconnect();
 		}
+	}
+
+	@Override
+	public void sendSmsNotificationPersonalized(List<Membro> membros, String content) {
+		if(membros!=null) {
+			for (Membro membro : membros) {
+				String recipient = membro.getTelefone();
+				try {
+					//sendSmsNotificationSislog(recipient, content);
+					System.out.println(recipient+"\t"+content);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}	
+			}
+		}
+		
+		
 	}
 
 }
