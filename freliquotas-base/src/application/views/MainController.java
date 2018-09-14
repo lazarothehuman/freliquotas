@@ -166,4 +166,8 @@ public class MainController implements Initializable {
 		developerMessage.setText("Unidade, Paz e Desenvolvimento" + 
 				" FRELIMO a Força da Mudança");
 	}
+	
+	public void informPersonalized() {
+		frameManager.viewPersonalizedNotification(user);
+	}
 }

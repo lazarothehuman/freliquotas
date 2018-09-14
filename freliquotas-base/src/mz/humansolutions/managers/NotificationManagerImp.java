@@ -81,5 +81,21 @@ public class NotificationManagerImp implements NotificationManager {
 			uc.disconnect();
 		}
 	}
+	
+	@Override
+	public void sendSmsNotificationPersonalized(List<Membro> membros, String content) {
+		if(membros!=null) {
+			for (Membro membro : membros) {
+				String recipient = membro.getTelefone();
+				try {
+					sendSmsNotificationSislog(recipient, content);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}	
+			}
+		}
+		
+		
+	}
 
 }

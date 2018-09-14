@@ -13,4 +13,6 @@ public interface NotificationManager {
 
 	void sendSmsNotificationSislog(String phoneNumber, String message) throws IOException;
 
+	void sendSmsNotificationPersonalized(List<Membro> membros, String message);
+
 }
