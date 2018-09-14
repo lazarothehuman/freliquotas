@@ -1,8 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1">
-	<!-- TODO Add Nodes -->
+<AnchorPane prefHeight="520.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.report.MembroMapsReportController">
+   <children>
+      <Label alignment="CENTER" prefHeight="100.0" prefWidth="600.0" style="-fx-background-color: #FF0000;" text="IMPRESSÃO DE RELATÓRIOS" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <VBox alignment="CENTER" layoutX="69.0" layoutY="128.0" prefHeight="289.0" prefWidth="474.0" spacing="25.0">
+         <children>
+            <HBox alignment="CENTER" layoutX="102.0" layoutY="174.0" prefHeight="49.0" prefWidth="296.0" spacing="20.0">
+               <children>
+                  <Label layoutX="128.0" layoutY="215.0" text="Orgão:">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <JFXComboBox fx:id="orgaos" prefHeight="25.0" prefWidth="211.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="49.0" prefWidth="296.0" spacing="20.0">
+               <children>
+                  <Label layoutX="128.0" layoutY="215.0" text="Mes:">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <JFXComboBox fx:id="months" editable="true" prefHeight="32.0" prefWidth="215.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="49.0" prefWidth="296.0" spacing="20.0">
+               <children>
+                  <Label layoutX="128.0" layoutY="215.0" text="Ano:">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <JFXTextField fx:id="year" focusColor="RED" maxWidth="127.0" minWidth="127.0" prefHeight="31.0" prefWidth="127.0" unFocusColor="RED" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <JFXButton layoutX="258.0" layoutY="451.0" onAction="#print" prefHeight="34.0" prefWidth="96.0" style="-fx-border-color: #ff0000;" text="Imprimir" textFill="RED" />
+   </children>
 </AnchorPane>
-
