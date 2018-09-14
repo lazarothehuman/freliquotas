@@ -24,7 +24,7 @@ public class NotificationManagerImpTest {
 	
 	@Test
 	public void sendSmsSislog() throws IOException {
-		notificationManager.sendSmsNotificationSislog("+258824164660", "Teste Anifo");
+		notificationManager.sendSmsNotificationSislog("+258825004957", "lazaro camarada Maria Luisa, lembramos-lhe do seu dever de pagamento de quotas referentes nomemes o envio do comprovativo à sede da cidade. Caso já tenha efectuado o pagamento e o envio do comprovativo, pode ignorar esta mensagem. DAF Cidade de Maputo");
 	}
 	
 	@Test
