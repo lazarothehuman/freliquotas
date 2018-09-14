@@ -280,7 +280,7 @@ public class FrameManager {
 	public void reportMembroMaps(User user) {
 		if (user != null) {
 			Profile profile = user.getProfile();
-			Transaccao transaction = dataManager.findTransaccao(401l);//still null
+			Transaccao transaction = dataManager.findTransaccao(501l);//still null
 			if (transaction.getProfiles().contains(profile))
 				load(transaction.getUrl());
 			else
