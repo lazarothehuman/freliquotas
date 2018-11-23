@@ -17,6 +17,14 @@
 	<classpathentry kind="lib" path="lib/mysql-connector-java-5.1.44-bin.jar"/>
 	<classpathentry kind="lib" path="lib/jfoenix.jar"/>
 	<classpathentry kind="lib" path="lib/controlsfx-8.0.5.jar"/>
+	<classpathentry kind="lib" path="lib/commons-beanutils-1.8.0.jar"/>
+	<classpathentry kind="lib" path="lib/commons-collections-2.1.1.jar"/>
+	<classpathentry kind="lib" path="lib/commons-digester-2.1.jar"/>
+	<classpathentry kind="lib" path="lib/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="lib/iText-2.1.7.js1.jar"/>
+	<classpathentry kind="lib" path="lib/jasperreports-5.0.0.jar"/>
+	<classpathentry kind="lib" path="lib/jfreechart-1.0.12.jar"/>
+	<classpathentry kind="lib" path="lib/jcommon-1.0.15.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -17,10 +17,11 @@
 			<property name="javax.persistence.jdbc.driver"
 				value="com.mysql.jdbc.Driver" />
 			<property name="javax.persistence.jdbc.url"
-				value="jdbc:mysql://localhost/freliquotas" />
-			<property name="javax.persistence.jdbc.user" value="freliquotas" />
+				value="jdbc:mysql://188.93.227.94:3306/bassecom_freliquotas" />
+				
+			<property name="javax.persistence.jdbc.user" value="bassecom_freliquotas" />
 			<property name="javax.persistence.jdbc.password"
-				value="freliquotas" />
+				value="07l07a97Z" />
 			<!-- Configura��es espec�ficas do Hibernate -->
 			<property name="hibernate.dialect"
 				value="org.hibernate.dialect.MySQL5InnoDBDialect" />

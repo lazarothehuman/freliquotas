@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import javafx.scene.control.CheckBox;
+
 @Entity
 public class Transaccao {
 	
@@ -25,6 +27,8 @@ public class Transaccao {
 	
 	@ManyToMany
 	List<Profile> profiles = new ArrayList<>();
+	
+	
 	
 	@Column(nullable =false, columnDefinition = "bit")
 	private Boolean active = true;
@@ -69,6 +73,8 @@ public class Transaccao {
 	public List<Profile> getProfiles() {
 		return this.profiles;
 	}
+	
+	
 	
 	
 
